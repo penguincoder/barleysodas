@@ -1,2 +1,9 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake appdoc" to generate API documentation for your models and controllers.
+BarleySodas
+Andrew Coleman mercury <at> penguincoder <dott> org
+All code is released under the GPLv2.
+
+A socially inviting application of beer drinkers.
+
+== Requires: ==
+* RedCloth (developed with 3.0.4)
+* Rails 1.2.3
