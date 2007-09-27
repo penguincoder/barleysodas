@@ -25,4 +25,16 @@ class Test::Unit::TestCase
   self.use_instantiated_fixtures  = false
 
   # Add more helper methods to be used by all tests here...
+  def assert_create(class_name, params = {})
+    obj = Class.class_eval(class_name).new(params)
+    assert obj.save
+  end
+
+  def assert_destroy(class_name, find = :first)
+    c = Class.class_eval(class_name)
+    obj = c.find(find)
+    obj_count = c.count
+    obj.destroy
+    assert c.count == obj_count - 1
+  end
 end
