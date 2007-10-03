@@ -16,4 +16,10 @@ class PageTest < Test::Unit::TestCase
     p.save
     assert p.html !~ /ul/
   end
+
+  def test_url_titles
+    p = Page.new :title => 'Test Title'
+    assert Page.title_from_url('Test_Title') == p.title
+    assert p.title_for_url == 'Test_Title'
+  end
 end

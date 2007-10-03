@@ -5,3 +5,7 @@ one:
 two:
   id: 2
   title: my other title page
+homepage:
+  id: 3
+  title: HomePage
+  redcloth: Homepage Text
