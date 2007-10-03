@@ -8,3 +8,4 @@ Rails::Initializer.run do |config|
 end
 
 require 'redcloth'
+require 'actionview_text_helper'

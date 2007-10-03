@@ -27,7 +27,7 @@ class Page < ActiveRecord::Base
   #
   def update_html
     # need to filter HTML first... remove <script> and chunks and the like...
-    res = RedCloth.new(self.redcloth.to_s, [ :no_span_caps ])
+    res = RedCloth.new(self.redcloth.to_s.strip_tags, [ :no_span_caps ])
     self.html = res.to_html(
       # no link references. messes up lines starting with [[WikiWord]]
       :block_textile_table, :block_textile_lists, :block_textile_prefix,

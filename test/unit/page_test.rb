@@ -10,4 +10,10 @@ class PageTest < Test::Unit::TestCase
   def test_destroy
     assert_destroy('Page')
   end
+
+  def test_no_html_in_tag
+    p = Page.new :title => 'test page', :redcloth => '<ul><li>list</li></ul>'
+    p.save
+    assert p.html !~ /ul/
+  end
 end
