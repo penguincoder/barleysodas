@@ -26,7 +26,7 @@ class Page < ActiveRecord::Base
   def title_for_url
     self.title.gsub(/ /, '_')
   end
-
+  
   ##
   # Gets a title from an url name.
   #
