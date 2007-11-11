@@ -19,3 +19,4 @@ class ApplicationController < ActionController::Base
           :status => '500 Error'
     end
   end
+end
