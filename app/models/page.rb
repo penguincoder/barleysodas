@@ -15,7 +15,7 @@ class Page < ActiveRecord::Base
   
   belongs_to :owner, :polymorphic => true
   validates_presence_of :title
-  validates_uniqueness_of :title
+  validates_uniqueness_of :title, :scope => 'owner_type'
   validates_format_of :title, :with => /[A-Za-z0-9 ]/,
     :message => 'may only contain letters, numbers and spaces'
   before_save :update_html
@@ -33,7 +33,7 @@ class Page < ActiveRecord::Base
   def self.title_from_url(title)
     title.to_s.gsub(/_/, ' ')
   end
-
+  
   protected
   
   ##
