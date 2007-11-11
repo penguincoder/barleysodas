@@ -2,6 +2,8 @@
 one:
   id: 1
   title: my title page for testing
+  owner_id: 1
+  owner_type: Beer
 two:
   id: 2
   title: my other title page

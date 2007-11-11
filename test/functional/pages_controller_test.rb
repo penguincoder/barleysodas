@@ -29,7 +29,7 @@ class PagesControllerTest < Test::Unit::TestCase
     post :create, :page => { :title => 'TestPage' }
     assert_equal old_count+1, Page.count
     
-    assert_redirected_to page_path(assigns(:page))
+    assert_redirected_to page_path(assigns(:page).title_for_url)
   end
 
   def test_should_show_page
@@ -44,7 +44,7 @@ class PagesControllerTest < Test::Unit::TestCase
   
   def test_should_update_page
     put :update, :id => 'HomePage', :page => { :title => 'HomePage' }
-    assert_redirected_to page_path(assigns(:page))
+    assert_redirected_to page_path(assigns(:page).title_for_url)
   end
   
   def test_should_destroy_page
