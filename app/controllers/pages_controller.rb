@@ -85,5 +85,6 @@ class PagesController < ApplicationController
   
   def fetch_page
     @page = Page.find_by_title(Page.title_from_url(params[:id]))
+    raise ActiveRecord::RecordNotFound.new if @page.nil?
   end
 end

@@ -83,6 +83,7 @@ class BeersController < ApplicationController
   def get_beer_and_page
     @beer = Beer.find_by_title(Page.title_from_url(params[:id]),
       :include => [ 'page' ])
+    raise ActiveRecord::RecordNotFound.new if @beer.nil?
     @page = @beer.page
   end
 end
