@@ -59,7 +59,7 @@ class BeersController < ApplicationController
       @beer.attributes = params[:beer]
       if @beer.save
         flash[:notice] = 'Beer was successfully updated.'
-        format.html { redirect_to beer_url(@beer) }
+        format.html { redirect_to beer_url(@beer.page.title_for_url) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
