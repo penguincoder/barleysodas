@@ -1,0 +1,21 @@
+<p>
+  <label for="brewery_title">Title</label> <%= text_field 'brewery', 'title' %>
+</p>
+<p>
+  <label for="brewery_address_1">Address</label> <%= text_field 'brewery', 'address_1' %><br /><%= text_field 'brewery', 'address_2' %>
+</p>
+<p>
+  <label for="brewery_city">City</label> <%= text_field 'brewery', 'city' %>
+</p>
+<p>
+  <label for="brewery_state">State</label> <%= text_field 'brewery', 'state' %>
+</p>
+<p>
+  <label for="brewery_postal_code">Postal Code</label> <%= text_field 'brewery', 'postal_code' %>
+</p>
+<p>
+  <label for="brewery_county">Country</label> <%= country_select 'brewery', 'country', [ 'United States', 'United Kingdom', 'Germany' ] %>
+</p>
+<p>
+  <label for="page_redcloth">Description</label> <%= text_area 'page', 'redcloth' %>
+</p>

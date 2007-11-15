@@ -1,0 +1,14 @@
+<h1>New brewery</h1>
+
+<%= error_messages_for :brewery %>
+
+<% form_for(:brewery, :url => breweries_path, :html => { :method => :post }) do |f| %>
+<%= render :partial => 'brewery_form' %>
+<p>
+  <%= submit_tag "Create" %>
+</p>
+<% end %>
+
+<div id="related_links">
+  <%= link_to 'Breweries', breweries_path %>
+</div>

@@ -7,6 +7,8 @@ one:
 two:
   id: 2
   title: my other title page
+  owner_id: 1
+  owner_type: Brewery
 homepage:
   id: 3
   title: HomePage

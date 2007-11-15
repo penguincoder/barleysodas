@@ -1,0 +1,15 @@
+<h1>Editing brewery</h1>
+
+<%= error_messages_for :brewery %>
+
+<% form_for(:brewery, :url => brewery_path(@brewery.page.title_for_url), :html => { :method => :put }) do |f| %>
+<%= render :partial => 'brewery_form' %>
+<p>
+  <%= submit_tag "Update" %>
+</p>
+<% end %>
+
+<div id="related_links">
+  <%= link_to 'Show', brewery_path(@brewery.page.title_for_url) %> |
+  <%= link_to 'Breweries', breweries_path %>
+</div>

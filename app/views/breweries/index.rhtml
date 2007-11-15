@@ -1,0 +1,24 @@
+<h1>Breweries</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<% for brewery in @breweries %>
+  <tr>
+    <td><%= brewery.title -%></td>
+    <td><%= link_to 'Show', brewery_path(brewery.page.title_for_url) %></td>
+    <td><%= link_to 'Edit', edit_brewery_path(brewery.page.title_for_url) %></td>
+    <td><%= link_to 'Destroy', brewery_path(brewery.page.title_for_url), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<div id="related_links">
+  <%= link_to 'New brewery', new_brewery_path %>
+</div>
