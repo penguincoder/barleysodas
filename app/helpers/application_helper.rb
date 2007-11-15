@@ -3,9 +3,16 @@ module ApplicationHelper
   # Returns the title for a page. This could be a Page title or something else.
   #
   def page_title
+    "BarleySodas :: #{controller.class.to_s.gsub(/Controller/, '')}"
+  end
+  
+  ##
+  # Returns a pretty name for the current chunk.
+  #
+  def content_title
     return @page_title if @page_title
     return @page.title if @page
-    "BarleySodas :: #{controller_class_name.gsub(/Controller/, '')}"
+    "BarleySodas"
   end
   
   ##
