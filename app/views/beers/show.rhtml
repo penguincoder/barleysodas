@@ -1,0 +1,21 @@
+<h1><%= @beer.title -%></h1>
+
+<%
+  attributes = []
+  attributes << "ABV: #{abv(@beer)}" unless @beer.abv.to_s.empty?
+  attributes << "Original Gravity: #{@beer.original_gravity}" unless @beer.original_gravity.to_s.empty?
+  attributes << "Final Gravity: #{@beer.final_gravity}" unless @beer.final_gravity.to_s.empty?
+  unless attributes.empty?
+-%>
+<div id="attributes">
+  <h3>Useful attributes</h3>
+  <ul><li><%= attributes.join('</li><li>') -%></ul>
+</div>
+<% end -%>
+
+<%= @page.html %>
+
+<div id="related_links">
+  <%= link_to 'Edit', edit_beer_path(@beer) %> |
+  <%= link_to 'Beers', beers_path %>
+</div>

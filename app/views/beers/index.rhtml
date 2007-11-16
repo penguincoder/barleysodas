@@ -1,0 +1,25 @@
+<h1>The Beers</h1>
+
+<% unless @beers.empty? -%>
+<table>
+  <tr>
+    <th>Beer</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% for beer in @beers %>
+  <tr>
+    <td><%= link_to beer.title, beer_path(beer.page.title_for_url) %></td>
+    <td><%= link_to 'Edit', edit_beer_path(beer.page.title_for_url) %></td>
+    <td><%= link_to 'Destroy', beer_path(beer.page.title_for_url), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<% end -%>
+
+<br />
+
+<div id="related_links">
+  <%= new_beer_link %>
+</div>

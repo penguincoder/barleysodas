@@ -1,0 +1,14 @@
+<h1>Create a new beer</h1>
+
+<%= error_messages_for :beer %>
+
+<% form_for(:beer, :url => beers_path, :html => { :method => :post }) do |f| %>
+<%= render :partial => 'beer_form' %>
+<p>
+  <%= submit_tag "Create" %>
+</p>
+<% end -%>
+
+<div id="related_links">
+  <%= link_to 'Beers', beers_path %>
+</div>
