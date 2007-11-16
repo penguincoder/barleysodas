@@ -3,9 +3,15 @@
 <%= error_messages_for :page %>
 
 <% form_for(:page, :url => pages_path) do |f| %>
-  <p>
-    <%= submit_tag "Create" %>
-  </p>
+<p>
+  <label for="page_title">Title</label> <%= text_field 'page', 'title' %>
+</p>
+<%= render :partial => 'page_form' %>
+<p>
+  <%= submit_tag "Create" %>
+</p>
 <% end %>
 
-<%= link_to 'Back', pages_path %>
+<% content_for :sidebar do -%>
+  <%= link_to 'Browse Pages', pages_path %><br />
+<% end -%>

@@ -16,6 +16,4 @@
 <p>
   <label for="brewery_county">Country</label> <%= country_select 'brewery', 'country', [ 'United States', 'United Kingdom', 'Germany' ] %>
 </p>
-<p>
-  <label for="page_redcloth">Description</label> <%= text_area 'page', 'redcloth' %>
-</p>
+<%= render :partial => 'pages/page_form' %>

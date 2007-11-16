@@ -1,5 +1,4 @@
-<h1>Breweries</h1>
-
+<% unless @breweries.empty? -%>
 <table>
   <tr>
     <th>Title</th>
@@ -16,9 +15,10 @@
   </tr>
 <% end %>
 </table>
+<% else -%>
+<p>No breweries, yet.</p>
+<% end -%>
 
-<br />
-
-<div id="related_links">
-  <%= link_to 'New brewery', new_brewery_path %>
-</div>
+<% content_for :sidebar do -%>
+  <%= link_to 'New brewery', new_brewery_path -%><br />
+<% end -%>

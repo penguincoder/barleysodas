@@ -1,5 +1,3 @@
-<h1>The Beers</h1>
-
 <% unless @beers.empty? -%>
 <table>
   <tr>
@@ -16,10 +14,10 @@
   </tr>
 <% end %>
 </table>
+<% else -%>
+<p>No beers, yet</p>
 <% end -%>
 
-<br />
-
-<div id="related_links">
-  <%= new_beer_link %>
-</div>
+<% content_for :sidebar do -%>
+  <%= link_to "New Beer", new_beer_path, { :title => 'Create a new beer' } -%><br />
+<% end -%>

@@ -3,16 +3,13 @@
 <%= error_messages_for :page %>
 
 <% form_for(:page, :url => page_path({ :id => @page.title_for_url }), :html => { :method => :put }) do |f| %>
-  <p>
-    <label for="page_title">Title</label> <%= text_field 'page', 'title' %>
-  </p>
-  <p>
-    <label for="page_redcloth">Description</label> <%= text_area 'page', 'redcloth' %>
-  </p>
-  <p>
-    <%= submit_tag "Update" %>
-  </p>
+<%= render :partial => 'page_form' %>
+<p>
+  <%= submit_tag "Update" %>
+</p>
 <% end %>
 
-<%= link_to 'Show', page_path({ :id => @page.title_for_url }) %> |
-<%= link_to 'Back', pages_path %>
+<% content_for :sidebar do -%>
+  <%= link_to 'Show', page_path({ :id => @page.title_for_url }) %><br />
+  <%= link_to 'Browse Pages', pages_path %><br />
+<% end -%>

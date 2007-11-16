@@ -3,16 +3,15 @@ module ApplicationHelper
   # Returns the title for a page. This could be a Page title or something else.
   #
   def page_title
-    "BarleySodas :: #{controller.class.to_s.gsub(/Controller/, '')}"
+    "BarleySodas :: #{content_title} :: #{secondary_title}"
   end
   
   ##
   # Returns a pretty name for the current chunk.
   #
   def content_title
-    return @page_title if @page_title
-    return @page.title if @page
-    "BarleySodas"
+    return @content_title if @content_title
+    controller.class.to_s.gsub(/Controller/, '')
   end
   
   ##
@@ -21,7 +20,7 @@ module ApplicationHelper
   #
   def secondary_title
     return @secondary_title if @secondary_title
-    return params[:action].to_s.capitalize.gsub(/_/) do |x|
+    params[:action].to_s.capitalize.gsub(/_/) do |x|
       $1.capitalize
     end
   end

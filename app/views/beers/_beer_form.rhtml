@@ -10,6 +10,4 @@
 <p>
   <label for="beer_final_gravity">Final Gravity</label> <%= text_field 'beer', 'final_gravity' %>
 </p>
-<p>
-  <label for="page_redcloth">Description</label> <%= text_area 'page', 'redcloth' %>
-</p>
+<%= render :partial => 'pages/page_form' %>

@@ -5,6 +5,8 @@ class BreweriesController < ApplicationController
   # GET /breweries
   # GET /breweries.xml
   def index
+    @content_title = 'The Breweries'
+    @secondary_title = 'Browsing all breweries'
     @pages, @breweries = paginate :breweries, :include => 'page',
       :order => 'breweries.title ASC', :per_page => 50
     respond_to do |format|

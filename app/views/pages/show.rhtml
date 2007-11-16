@@ -1,4 +1,6 @@
 <%= render :partial => 'page' %>
 
-<%= link_to 'Edit', edit_page_path({ :id => @page.title_for_url }) %> |
-<%= link_to 'Back', pages_path %>
+<% content_for :sidebar do -%>
+  <%= link_to 'Edit Page', edit_page_path({ :id => @page.title_for_url }) %><br />
+  <%= link_to 'Browse Pages', pages_path %><br />
+<% end -%>

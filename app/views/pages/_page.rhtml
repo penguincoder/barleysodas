@@ -1,9 +1,19 @@
-<div id="page_container">
-<h1><%= link_to_page(@page) -%></h1>
-<div class="page_container_content">
-<%= @page.html %>
-</div>
-<div class="page_container_controls">
-Current Version: <%= @page.version %>
-</div>
+<div class="hentry" id="article-<%= @page.id %>">
+  <h2 class="entry-title">
+    <%= @page.title %>
+    <span class="comment_count">Comment Size Here</span>
+  </h2>
+  <div class="vcard">
+    Posted by <span class="fn">Author Name Here</span>
+  </div>
+  <br class="clear" />
+  <div class="entry-content">
+    <%= @page.html %>
+  </div>
+  <ul class="meta">
+    <li>Add Tags here</li>
+    <li>Meta
+      Version: <%= @page.version -%> / <%= @page.versions.size %>
+    </li>
+  </ul>
 </div>

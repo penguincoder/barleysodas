@@ -28,7 +28,11 @@
     <%= yield %>
   </div>
   <div id="sidebar">
-    <p>todo</p>
+    <%= link_to_unless_current 'Browse The Beer Wiki', pages_path -%><br />
+    <%= link_to_unless_current 'Browse Beers', beers_path -%><br />
+    <%= link_to_unless_current 'Browse Breweries', breweries_path -%><br />
+    <hr />
+    <%= yield :sidebar %>
   </div>
   <br style="clear:both;" />
 </div>

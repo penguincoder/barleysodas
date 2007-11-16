@@ -1,4 +1,4 @@
-<h1><%= @brewery.title -%></h1>
+<%= render :partial => 'pages/page' %>
 
 <div id="attributes">
   <ul>
@@ -6,9 +6,7 @@
   </ul>
 </div>
 
-<%= @page.html %>
-
-<div id="related_links">
-  <%= link_to 'Edit', edit_brewery_path(@brewery.page.title_for_url) %> |
-  <%= link_to 'Breweries', breweries_path %>
-</div>
+<% content_for :sidebar do -%>
+  <%= link_to 'New Brewery', new_brewery_path -%><br />
+  <%= link_to 'Edit', edit_brewery_path(@brewery.page.title_for_url) -%><br />
+<% end -%>

@@ -5,6 +5,8 @@ class BeersController < ApplicationController
   # GET /beers
   # GET /beers.xml
   def index
+    @content_title = 'The Beers'
+    @secondary_title = 'Browsing all beers'
     @pages, @beers = paginate :beers, :include => 'page', :per_page => 50,
       :order => 'beers.title ASC'
     respond_to do |format|
@@ -24,12 +26,14 @@ class BeersController < ApplicationController
   
   # GET /beers/new
   def new
+    @secondary_title = 'Create a new beer'
     @beer = Beer.new
     @page = Page.new
   end
   
   # GET /beers/1;edit
   def edit
+    @secondary_title = 'Update existing beer'
   end
   
   # POST /beers
