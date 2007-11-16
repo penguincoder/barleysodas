@@ -8,6 +8,21 @@ class Beer < ActiveRecord::Base
   before_save :ensure_page_valid
   after_save :save_page
   
+  ##
+  # Returns a list of attributes for the Page partial.
+  #
+  def page_attributes
+    pattr = []
+    pattr << "ABV: #{"%.1f" % abv}%" unless abv.to_s.empty?
+    unless original_gravity.to_s.empty?
+      pattr << "Original Gravity: #{original_gravity}"
+    end
+    unless final_gravity.to_s.empty?
+      pattr << "Final Gravity: #{final_gravity}"
+    end
+    pattr
+  end
+  
   protected
   
   ##

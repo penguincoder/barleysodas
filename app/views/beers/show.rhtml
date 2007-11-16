@@ -1,18 +1,5 @@
 <%= render :partial => 'pages/page' %>
 
-<%
-  attributes = []
-  attributes << "ABV: #{abv(@beer)}" unless @beer.abv.to_s.empty?
-  attributes << "Original Gravity: #{@beer.original_gravity}" unless @beer.original_gravity.to_s.empty?
-  attributes << "Final Gravity: #{@beer.final_gravity}" unless @beer.final_gravity.to_s.empty?
-  unless attributes.empty?
--%>
-<div id="attributes">
-  <h3>Useful attributes</h3>
-  <ul><li><%= attributes.join('</li><li>') -%></ul>
-</div>
-<% end -%>
-
 <% content_for :sidebar do -%>
   <%= link_to 'New Beer', new_beer_path -%><br />
   <%= link_to 'Edit Beer', edit_beer_path(@beer.page.title_for_url) -%><br />

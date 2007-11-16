@@ -12,8 +12,9 @@
   </div>
   <ul class="meta">
     <li>Add Tags here</li>
-    <li>Meta
-      Version: <%= @page.version -%> / <%= @page.versions.size %>
-    </li>
+    <li>Version: <%= @page.version -%></li>
+    <% @page.owner.page_attributes.each do |x| -%>
+    <li><%= x -%></li>
+    <% end if @page.owner and @page.owner.respond_to?("page_attributes") %>
   </ul>
 </div>

@@ -1,11 +1,5 @@
 <%= render :partial => 'pages/page' %>
 
-<div id="attributes">
-  <ul>
-    <li>Available Beers: <%= @brewery.beers.size -%></li>
-  </ul>
-</div>
-
 <% content_for :sidebar do -%>
   <%= link_to 'New Brewery', new_brewery_path -%><br />
   <%= link_to 'Edit', edit_brewery_path(@brewery.page.title_for_url) -%><br />

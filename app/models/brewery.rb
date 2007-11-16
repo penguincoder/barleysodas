@@ -8,6 +8,15 @@ class Brewery < ActiveRecord::Base
   before_save :ensure_page_valid
   after_save :save_page
   
+  ##
+  # Returns a list of attributes to add into the Page display.
+  #
+  def page_attributes
+    pattr = []
+    pattr << "Available Beers: #{beers.size}"
+    pattr
+  end
+  
   protected
   
   ##
