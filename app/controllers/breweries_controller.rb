@@ -57,9 +57,9 @@ class BreweriesController < ApplicationController
   # PUT /breweries/1
   # PUT /breweries/1.xml
   def update
+    @page.attributes = params[:page]
+    @brewery.attributes = params[:brewery]
     respond_to do |format|
-      @page.attributes = params[:page]
-      @brewery.attributes = params[:brewery]
       if @brewery.save
         flash[:notice] = 'Brewery was successfully updated.'
         format.html { redirect_to brewery_url(@brewery.page.title_for_url) }

@@ -51,8 +51,9 @@ class PagesController < ApplicationController
   # PUT /pages/1
   # PUT /pages/1.xml
   def update
+    @page.attributes = params[:page]
     respond_to do |format|
-      if @page.update_attributes(params[:page])
+      if @page.save
         flash[:notice] = 'Page was successfully updated.'
         format.html { redirect_to page_url({ :id => @page.title_for_url }) }
         format.xml  { head :ok }
@@ -67,7 +68,6 @@ class PagesController < ApplicationController
   # DELETE /pages/1.xml
   def destroy
     @page.destroy
-
     respond_to do |format|
       format.html { redirect_to pages_url }
       format.xml  { head :ok }
