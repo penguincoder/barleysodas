@@ -23,7 +23,8 @@ module ActiveRecord # :nodoc:
         
         class_eval do
           has_one :page, :foreign_key => 'owner_id', :dependent => :destroy,
-            :conditions => "pages.owner_type = '#{options[:owner_class]}'"
+            :conditions => "pages.owner_type = '#{options[:owner_class]}'",
+            :include => 'tags'
           before_save :ensure_tuxwiki_page_valid
           after_save :save_tuxwiki_page
         end
