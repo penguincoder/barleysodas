@@ -34,6 +34,7 @@ class BeersController < ApplicationController
   # GET /beers/1;edit
   def edit
     @secondary_title = 'Update existing beer'
+    @brewery = @beer.brewery
   end
   
   # POST /beers
@@ -42,6 +43,8 @@ class BeersController < ApplicationController
     @beer = Beer.new(params[:beer])
     @page = Page.new(params[:page])
     @beer.page = @page
+    brewery = Brewery.find_by_title(params[:brewery][:title]) rescue nil
+    @beer.brewery = brewery
     respond_to do |format|
       if @beer.save
         flash[:notice] = 'Beer was successfully created.'
@@ -58,9 +61,11 @@ class BeersController < ApplicationController
   # PUT /beers/1
   # PUT /beers/1.xml
   def update
+    @page.attributes = params[:page]
+    @beer.attributes = params[:beer]
+    brewery = Brewery.find_by_title(params[:brewery][:title]) rescue nil
+    @beer.brewery = brewery
     respond_to do |format|
-      @page.attributes = params[:page]
-      @beer.attributes = params[:beer]
       if @beer.save
         flash[:notice] = 'Beer was successfully updated.'
         format.html { redirect_to beer_url(@beer.page.title_for_url) }
@@ -84,6 +89,9 @@ class BeersController < ApplicationController
   
   protected
   
+  ##
+  # Fetches the Beer and Page model for the actions.
+  #
   def get_beer_and_page
     @beer = Beer.find_by_title(Page.title_from_url(params[:id]),
       :include => [ 'page' ])

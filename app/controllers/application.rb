@@ -2,6 +2,14 @@ class ApplicationController < ActionController::Base
   session :session_key => '_barleysodas_session_id'
   
   ##
+  # Ensures that the request was made using an Ajax request.
+  #
+  def ensure_xhr
+    return false unless request.xhr?
+    true
+  end
+  
+  ##
   # Sane error and missing document messages.
   #
   def rescue_action_in_public(exception)

@@ -10,4 +10,7 @@
 <p>
   <label for="beer_final_gravity">Final Gravity</label> <%= text_field 'beer', 'final_gravity' %>
 </p>
+<p>
+  <label for="brewery_title">Brewery</label> <%= text_field_with_auto_complete('brewery', 'title', {}, { :url => { :controller => 'autocomplete', :action => 'index' } }) %>
+</p>
 <%= render :partial => 'pages/page_form' %>

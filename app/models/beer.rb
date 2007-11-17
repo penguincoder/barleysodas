@@ -13,6 +13,9 @@ class Beer < ActiveRecord::Base
   #
   def page_attributes
     pattr = []
+    unless brewery.nil?
+      pattr << "Brewery: #{brewery.title}"
+    end
     pattr << "ABV: #{"%.1f" % abv}%" unless abv.to_s.empty?
     unless original_gravity.to_s.empty?
       pattr << "Original Gravity: #{original_gravity}"
