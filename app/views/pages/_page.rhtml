@@ -11,7 +11,7 @@
     <%= @page.html %>
   </div>
   <ul class="meta">
-    <li>Add Tags here</li>
+    <li>Tags: <%= @page.tag_names.join(' ') -%></li>
     <li>Version: <%= @page.version -%></li>
     <% @page.owner.page_attributes.each do |x| -%>
     <li><%= x -%></li>

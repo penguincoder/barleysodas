@@ -12,6 +12,7 @@
 #
 class Page < ActiveRecord::Base
   acts_as_versioned
+  acts_as_taggable
   
   belongs_to :owner, :polymorphic => true
   validates_presence_of :title
