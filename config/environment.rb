@@ -9,3 +9,4 @@ end
 
 require 'redcloth'
 require 'actionview_text_helper'
+require 'has_one_page'
