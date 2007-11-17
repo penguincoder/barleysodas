@@ -1,4 +1,13 @@
-<%= render :partial => 'page' -%>
+<%= render :partial => 'page', :locals => { :simple => true } -%>
+
+<% unless @wiki_pages.empty? -%>
+  <div class="hentry">
+  <ul>
+    <%= @wiki_pages.collect { |x| "<li>#{show_page_link(x, x.title)}</li>" } %>
+  </ul>
+  <%= render :partial => 'shared/pagination_links' %>
+  </div>
+<% end -%>
 
 <% content_for :sidebar do -%>
   <%= new_page_link -%><br />

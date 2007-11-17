@@ -1,20 +1,21 @@
+<% simple ||= false -%>
 <div class="hentry" id="article-<%= @page.id %>">
   <h2 class="entry-title">
     <%= @page.title %>
-    <span class="comment_count">Comment Size Here</span>
+    <% unless simple -%><span class="comment_count">Comment Size Here</span><% end -%>
   </h2>
-  <div class="vcard">
+  <% unless simple -%><div class="vcard">
     Posted by <span class="fn">Author Name Here</span>
-  </div>
+  </div><% end -%>
   <br class="clear" />
   <div class="entry-content">
     <%= @page.html %>
   </div>
-  <ul class="meta">
+  <% unless simple -%><ul class="meta">
     <% if @page.tags.size > 0 -%><li>Tags: <%= @page.tag_names.join(' ') -%></li><% end -%>
     <li>Version: <%= @page.version -%></li>
     <% @page.owner.page_attributes.each do |x| -%>
     <li><%= x -%></li>
     <% end if @page.owner and @page.owner.respond_to?("page_attributes") %>
-  </ul>
+  </ul><% end -%>
 </div>

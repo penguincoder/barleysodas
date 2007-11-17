@@ -7,9 +7,16 @@ class PagesController < ApplicationController
     @page = Page.find_by_title 'HomePage'
     @page ||= Page.create :title => 'HomePage',
       :redcloth => 'Welcome to BarleySodas!'
+    @content_title = 'The Beer Wiki'
+    @secondary_title = 'Browsing all pages'
+    
+    cond_ary = [ 'owner_id IS NULL' ]
+    cond_ary << "title <> 'HomePage'"
+    @pages, @wiki_pages = paginate :page, :per_page => 25,
+      :order => 'title ASC', :conditions => [ cond_ary.join(' AND ') ]
+    
     respond_to do |format|
       format.html # index.rhtml
-      format.xml  { render :xml => @page.to_xml }
     end
   end
   
