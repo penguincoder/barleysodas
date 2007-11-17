@@ -8,6 +8,6 @@
 <% end -%>
 
 <% content_for :sidebar do -%>
-  <%= link_to 'New Beer', new_beer_path -%><br />
-  <%= link_to 'Show', beer_path(@beer.page.title_for_url) -%><br />
+  <%= new_beer_link -%><br />
+  <%= show_beer_link(@beer) -%><br />
 <% end -%>

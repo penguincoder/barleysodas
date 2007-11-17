@@ -1,6 +1,6 @@
 <%= render :partial => 'pages/page' %>
 
 <% content_for :sidebar do -%>
-  <%= link_to 'New Beer', new_beer_path -%><br />
-  <%= link_to 'Edit Beer', edit_beer_path(@beer.page.title_for_url) -%><br />
+  <%= new_beer_link -%><br />
+  <%= edit_beer_link(@beer) -%><br />
 <% end -%>

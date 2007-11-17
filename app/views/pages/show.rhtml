@@ -1,6 +1,6 @@
 <%= render :partial => 'page' %>
 
 <% content_for :sidebar do -%>
-  <%= link_to 'Edit Page', edit_page_path({ :id => @page.title_for_url }) %><br />
-  <%= link_to 'Browse Pages', pages_path %><br />
+  <%= new_page_link -%><br />
+  <%= edit_page_link(@page) -%><br />
 <% end -%>

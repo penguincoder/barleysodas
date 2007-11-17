@@ -10,6 +10,6 @@
 <% end %>
 
 <% content_for :sidebar do -%>
-  <%= link_to 'Show', page_path({ :id => @page.title_for_url }) %><br />
-  <%= link_to 'Browse Pages', pages_path %><br />
+  <%= new_page_link -%><br />
+  <%= show_page_link(@page) -%><br />
 <% end -%>
