@@ -1,0 +1,7 @@
+<ul>
+<% if @items.empty? -%>
+  <li><strong>Ohtehnoz! No maches found!</strong></li>
+<% else -%>
+  <%= @items.collect { |x| "<li>#{x.send(@value)}</li>" } %>
+<% end -%>
+</ul>
