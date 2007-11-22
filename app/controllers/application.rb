@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   session :session_key => '_barleysodas_session_id'
-  append_before_filter :block_prefeching_links
+  append_before_filter :block_prefetching_links
   
   ##
   # Ensures that the request was made using an Ajax request.
