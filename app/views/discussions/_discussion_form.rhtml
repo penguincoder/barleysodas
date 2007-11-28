@@ -1,0 +1,26 @@
+<div id="discussion_errors">
+  <%= error_messages_for :discussion %>
+</div>
+
+<%= form_remote_tag :url      => discussions_path,
+                    :update   => { :success => 'comments', :failure => 'comment_errors' },
+                    :position => 'bottom',
+                    :loading  => "Element.show('spinner'); Element.hide('preview')",
+                    :complete => "Element.hide('spinner'); $('discussion_form').elements['discussion_text'].value = ''; new Effect.Highlight('comments', {duration:0.75})",
+                    :html     => { :id => 'discussion_form', :class => 'discussions' } %>
+<%= hidden_field_tag 'discussion[page_id]', @page.id %>
+<fieldset>
+  <h2>Discuss</h2>
+  <p>
+    <label>
+      Comment:
+      <%= text_area 'discussion', 'text' %>
+    </label>
+  </p>
+
+  <p>
+    <%= submit_tag 'Submit' %>
+    <%= image_tag '/images/spinner.gif', :id => 'spinner', :style => 'display:none' %>
+  </p>
+</fieldset>
+</form>

@@ -16,20 +16,14 @@ class DiscussionsControllerTest < Test::Unit::TestCase
   def test_should_get_index
     get :index
     assert_response :success
-    assert assigns(:discussions)
+    assert assigns(:pages)
   end
 
-  def test_should_get_new
-    get :new
-    assert_response :success
-  end
-  
   def test_should_create_discussion
     old_count = Discussion.count
-    post :create, :discussion => { }
+    post :create, :discussion => { :page_id => 1 }
     assert_equal old_count+1, Discussion.count
-    
-    assert_redirected_to discussion_path(assigns(:discussion))
+    assert_response :success
   end
 
   def test_should_show_discussion
@@ -37,21 +31,15 @@ class DiscussionsControllerTest < Test::Unit::TestCase
     assert_response :success
   end
 
-  def test_should_get_edit
-    get :edit, :id => 1
+  def test_should_update_discussion
+    put :update, :id => 1, :discussion => { :page_id => 1 }
     assert_response :success
   end
-  
-  def test_should_update_discussion
-    put :update, :id => 1, :discussion => { }
-    assert_redirected_to discussion_path(assigns(:discussion))
-  end
-  
+
   def test_should_destroy_discussion
     old_count = Discussion.count
     delete :destroy, :id => 1
     assert_equal old_count-1, Discussion.count
-    
-    assert_redirected_to discussions_path
+    assert_response :success
   end
 end

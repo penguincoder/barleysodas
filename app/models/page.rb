@@ -15,11 +15,16 @@ class Page < ActiveRecord::Base
   acts_as_taggable
   
   belongs_to :owner, :polymorphic => true
+  has_many :discussions, :order => 'discussions.created_at ASC',
+    :dependent => :destroy
+  
   validates_presence_of :title
   validates_uniqueness_of :title, :scope => 'owner_type'
   validates_format_of :title, :with => /^([A-Za-z0-9 ])+$/,
     :message => 'may only contain letters, numbers and spaces'
   before_save :update_html
+  
+  attr_protected :allow_discussions
   
   ##
   # Returns an url-friendly title for making links.

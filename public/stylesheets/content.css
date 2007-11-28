@@ -190,70 +190,65 @@
 
 
 /* Comments and Trackbacks */
-#content ol.comments,
-#content ol.trackbacks {
+#content ol.discussions {
   list-style-type: none;
   margin: 0; padding: 0;
 }
 
-#content li.comment,
-#content li.trackback {
+#content li.discussion {
   border: 2px solid #ddd;
   margin: 0 0 1.5em; padding: 1em;
 }
 
-#content li.comment.preview { 
+#content li.discussion.preview { 
   background: #ffc;
   border: 3px solid #fab444;
   margin: 0 0 1.5em; padding: 1em;
 }
 
-#content li.comment   .author,
-#content li.trackback .author { 
+#content li.discussion   .author {
   font-weight: bold;
   margin-bottom: 1em;
 }
 
-#content li.comment   .author cite,
-#content li.trackback .author cite {
+#content li.discussion   .author cite {
   font-size: 16px;
   letter-spacing: -1px;
 }
 
-#content li.comment   .author abbr, 
-#content li.trackback .author abbr { color: #999; }
+#content li.discussion   .author abbr { color: #999; }
 
-#content li.comment .author .gravatar { 
+#content li.discussion .author .gravatar { 
   margin: 0 0 0.5em 0.5em;
   float: right; 
 }
 
-#content li.comment .author div {
+#content li.discussion .author div {
   margin: 0 0 0.5em 0.5em;
   width: 60px; height: 60px;
   background: url(/images/gravatar.gif) no-repeat left top;
   float: right; 
 }
 
-#content form.comments {
+#content form.discussions {
   background: #f2f2f2;
   border-top: 1px solid #ddd;
   padding: 1em 0.5em;
 }
 
-#content form.comments fieldset { 
+#content form.discussions fieldset { 
   border: none;
 }
 
-#content form.comments legend { 
+#content form.discussions legend { 
   display: none;
 }
 
-#content form.comments label { 
+#content form.discussions label { 
   font-weight: bold;
 }
 
-#content form.comments textarea { 
+#content form.discussions textarea { 
   width: 90%; height: 150px;
   padding: 3px;
 }

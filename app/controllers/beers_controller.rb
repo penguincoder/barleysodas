@@ -43,6 +43,7 @@ class BeersController < ApplicationController
     @beer = Beer.new(params[:beer])
     @page = Page.new(params[:page])
     @beer.page = @page
+    allow_page_discussions
     brewery = Brewery.find_by_title(params[:brewery][:title]) rescue nil
     @beer.brewery = brewery
     respond_to do |format|

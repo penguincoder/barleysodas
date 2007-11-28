@@ -1,18 +1,10 @@
-<h1>Listing discussions</h1>
-
-<table>
-  <tr>
-  </tr>
-  
-<% for discussion in @discussions %>
-  <tr>
-    <td><%= link_to 'Show', discussion_path(discussion) %></td>
-    <td><%= link_to 'Edit', edit_discussion_path(discussion) %></td>
-    <td><%= link_to 'Destroy', discussion_path(discussion), :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<% unless @wiki_pages.empty? -%>
+<ul id="discussions">
+<% for page in @wiki_pages -%>
+  <li class="<%= page.owner_type.to_s.empty? ? '' : page.owner_type -%>">
+    <%= link_to page.title, discussion_path(page) -%> (<%= page.discussions.size -%>)
+  </li>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New discussion', new_discussion_path %>
+</ul>
+<%= render :partial => 'shared/pagination_links' %>
+<% end -%>

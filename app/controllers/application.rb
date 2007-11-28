@@ -29,6 +29,14 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  ##
+  # Sets the <tt>@page</tt> variable to allow discussions. This should probably
+  # have some kind of permission availability check later on.
+  #
+  def allow_page_discussions
+    @page.allow_discussions = true
+  end
+  
   private
   
   ##

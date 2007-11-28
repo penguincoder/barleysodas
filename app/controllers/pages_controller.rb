@@ -42,6 +42,7 @@ class PagesController < ApplicationController
   # POST /pages.xml
   def create
     @page = Page.new params[:page]
+    allow_page_discussions
     respond_to do |format|
       if @page.save
         flash[:notice] = 'Page was successfully created.'

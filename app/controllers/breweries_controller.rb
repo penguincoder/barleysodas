@@ -40,7 +40,7 @@ class BreweriesController < ApplicationController
     @brewery = Brewery.new(params[:brewery])
     @page = Page.new(params[:page])
     @brewery.page = @page
-    
+    allow_page_discussions
     respond_to do |format|
       if @brewery.save
         flash[:notice] = 'Brewery was successfully created.'

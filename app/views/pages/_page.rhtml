@@ -2,7 +2,6 @@
 <div class="hentry" id="article-<%= @page.id %>">
   <h2 class="entry-title">
     <%= @page.title %>
-    <% unless simple -%><span class="comment_count">Comment Size Here</span><% end -%>
   </h2>
   <% unless simple -%><div class="vcard">
     Posted by <span class="fn">Author Name Here</span>
@@ -19,3 +18,9 @@
     <% end if @page.owner and @page.owner.respond_to?("page_attributes") %>
   </ul><% end -%>
 </div>
+
+<% content_for 'sidebar' do -%>
+  <% if @page.allow_discussions? or !@page.discussions.empty? -%>
+  <%= link_to "Discuss (#{@page.discussions.size})", discussion_path(@page) -%><br />
+  <% end -%>
+<% end -%>

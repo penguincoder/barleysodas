@@ -1,3 +1,15 @@
+<%= render :partial => 'pages/page' %>
 
-<%= link_to 'Edit', edit_discussion_path(@discussion) %> |
-<%= link_to 'Back', discussions_path %>
+<ol id="comments" class="comments">
+  <%= render :partial => 'discussion', :collection => @discussions %>
+</ol>
+
+<%= render :partial => 'shared/pagination_links' %>
+
+<% if @page.allow_discussions? -%>
+  <%= render :partial => 'discussion_form' %>
+<% end -%>
+
+<% content_for 'sidebar' do -%>
+  <%= page_or_parent_link(@page) -%><br />
+<% end -%>
