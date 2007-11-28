@@ -9,6 +9,10 @@ class BreweriesController < ApplicationController
     @secondary_title = 'Browsing all breweries'
     @pages, @breweries = paginate :breweries, :include => 'page',
       :order => 'breweries.title ASC', :per_page => 50
+    
+    @tags = Page.tags(:limit => 25, :order => "name DESC",
+      :owner_type => 'Beer')
+    
     respond_to do |format|
       format.html # index.rhtml
       format.xml  { render :xml => @breweries.to_xml }

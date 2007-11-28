@@ -46,4 +46,26 @@ module ApplicationHelper
   def discussions_allowed?
     @page and @page.allow_discussions?
   end
+  
+  ##
+  # Generates a Tag cloud.
+  #
+  def tag_cloud(tags, classes = tag_cloud_styles)
+    max, min = 0, 0
+    tags.each do |t|
+      max = t.count.to_i if t.count.to_i > max
+      min = t.count.to_i if t.count.to_i < min
+    end
+    divisor = ((max - min) / classes.size) + 1
+    tags.each do |t|
+      yield t.name, classes[(t.count.to_i - min) / divisor]
+    end
+  end
+  
+  ##
+  # Returns an array of Tag styles for a cloud.
+  #
+  def tag_cloud_styles
+    %w(tag_cloud_1 tag_cloud_2 tag_cloud_3 tag_cloud_4 tag_cloud_5)
+  end
 end

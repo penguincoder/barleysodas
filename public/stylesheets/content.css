@@ -398,3 +398,19 @@
   margin: 0; padding: 0 0 0 1em;
   display: inline; 
 }
+
+/* Tag Cloud Styles */
+.tag_cloud_1 {font-size: 1.0em;}
+.tag_cloud_2 {font-size: 1.2em;}
+.tag_cloud_3 {font-size: 1.4em;}
+.tag_cloud_4 {font-size: 1.6em;}
+.tag_cloud_5 {font-size: 1.8em;}
+.tag_cloud_6 {font-size: 2.0em;}
+
+#tag_cloud p {
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+  font-size: 1.1em;
+  font-weight: bold;
+}

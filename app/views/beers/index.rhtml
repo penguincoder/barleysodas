@@ -20,4 +20,5 @@
 
 <% content_for :sidebar do -%>
   <%= link_to "New Beer", new_beer_path, { :title => 'Create a new beer' } -%><br />
+  <%= render :partial => 'shared/tag_cloud' %>
 <% end -%>

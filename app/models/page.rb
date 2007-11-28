@@ -40,6 +40,27 @@ class Page < ActiveRecord::Base
     title.to_s.gsub(/_/, ' ')
   end
   
+  ##
+  # Returns a list of Tag models for a type of Page.
+  #
+  # Can take options of :order, :limit, and :owner_type
+  #
+  def self.tags(options = {})
+    query = "select tags.id, name, count(*) as count"
+    query << " from tags_pages, tags, pages"
+    query << " where tags.id = tag_id"
+    if options[:owner_type].nil?
+      query << " and pages.owner_type IS NULL"
+    else
+      query << " and pages.owner_type = '#{options[:owner_type]}'"
+    end
+    query << " and tags_pages.page_id = pages.id"
+    query << " group by tags.id, tags.name"
+    query << " order by #{options[:order]}" if options[:order] != nil
+    query << " limit #{options[:limit]}" if options[:limit] != nil
+    tags = Tag.find_by_sql(query)
+  end
+  
   protected
   
   ##

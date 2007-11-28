@@ -1,0 +1,9 @@
+<% unless @tags.empty? -%>
+<div id="tag_cloud">
+<hr />
+<p>Tag Cloud</p>
+<% tag_cloud @tags, tag_cloud_styles do |name, css_class| %>
+  <span class="<%= css_class -%>"><%= name -%></span>
+<% end %>
+</div>
+<% end -%>
