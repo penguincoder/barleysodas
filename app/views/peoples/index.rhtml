@@ -1,0 +1,14 @@
+<ul>
+<% unless @peoples.empty? -%>
+<% for people in @peoples -%><li><%= show_people_link(people) -%></li><% end %>
+<% else -%>
+<li>No people, yet!</li>
+<% end -%>
+</ul>
+
+<%= render :partial => 'shared/pagination_links' %>
+
+<% content_for :sidebar do -%>
+  <%= link_to 'Create a new person', new_people_path %><br />
+  <%= render :partial => 'shared/tag_cloud' %>
+<% end -%>

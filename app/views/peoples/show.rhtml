@@ -1,0 +1,7 @@
+<%= render :partial => 'pages/page' %>
+
+<% content_for :sidebar do -%>
+  <%= new_people_link -%><br />
+  <%= edit_people_link(@people) %><br />
+  <%= link_to 'Destroy', people_path(@people.page.title_for_url), :confirm => 'Are you sure?', :method => :delete %><br />
+<% end -%>

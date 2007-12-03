@@ -13,3 +13,8 @@ homepage:
   id: 3
   title: HomePage
   redcloth: Homepage Text
+personal_description:
+  id: 4
+  title: penguin coder
+  owner_id: 1
+  owner_type: People

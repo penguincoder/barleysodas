@@ -1,0 +1,10 @@
+<%= error_messages_for :people %>
+
+<% form_for(:people, :url => people_path(@people), :html => { :method => :put }) do |f| %>
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', people_path(@people) %> |
+<%= link_to 'Back', peoples_path %>
