@@ -1,22 +1,13 @@
+<ul>
 <% unless @beers.empty? -%>
-<table>
-  <tr>
-    <th>Beer</th>
-    <th></th>
-    <th></th>
-  </tr>
-
 <% for beer in @beers %>
-  <tr>
-    <td><%= link_to beer.title, beer_path(beer.page.title_for_url) %></td>
-    <td><%= link_to 'Edit', edit_beer_path(beer.page.title_for_url) %></td>
-    <td><%= link_to 'Destroy', beer_path(beer.page.title_for_url), :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+  <li><%= link_to beer.title, beer_path(beer.page.title_for_url) %></li>
 <% else -%>
-<p>No beers, yet</p>
+<li>No beers, yet</li>
 <% end -%>
+</ul>
+
+<%= render :partial => 'shared/pagination_links' %>
 
 <% content_for :sidebar do -%>
   <%= link_to "New Beer", new_beer_path, { :title => 'Create a new beer' } -%><br />
