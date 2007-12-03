@@ -1,23 +1,12 @@
+<ul>
 <% unless @breweries.empty? -%>
-<table>
-  <tr>
-    <th>Title</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-<% for brewery in @breweries %>
-  <tr>
-    <td><%= brewery.title -%></td>
-    <td><%= link_to 'Show', brewery_path(brewery.page.title_for_url) %></td>
-    <td><%= link_to 'Edit', edit_brewery_path(brewery.page.title_for_url) %></td>
-    <td><%= link_to 'Destroy', brewery_path(brewery.page.title_for_url), :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<% for brewery in @breweries %><li><%= show_brewery_link(brewery) -%></li><% end -%>
 <% else -%>
-<p>No breweries, yet.</p>
+<li>No breweries, yet.</li>
 <% end -%>
+</ul>
+
+<%= render :partial => 'shared/pagination_links' %>
 
 <% content_for :sidebar do -%>
   <%= link_to 'New brewery', new_brewery_path -%><br />

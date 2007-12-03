@@ -5,7 +5,7 @@ module BreweriesHelper
   end
   
   def show_brewery_link(brewery)
-    link_to 'Show', brewery_path(brewery.page.title_for_url),
+    link_to brewery.title, brewery_path(brewery.page.title_for_url),
       { :title => brewery.title }
   end
   
