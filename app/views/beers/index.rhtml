@@ -1,8 +1,6 @@
 <ul>
 <% unless @beers.empty? -%>
-<% for beer in @beers %>
-  <li><%= link_to beer.title, beer_path(beer.page.title_for_url) %></li>
-<% else -%>
+<% for beer in @beers %><li><%= link_to beer.title, beer_path(beer.page.title_for_url) %></li><% else -%>
 <li>No beers, yet</li>
 <% end -%>
 </ul>

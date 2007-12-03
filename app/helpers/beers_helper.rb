@@ -4,7 +4,7 @@ module BeersHelper
   end
   
   def show_beer_link(beer)
-    link_to 'Show', beer_path(beer.page.title_for_url),
+    link_to beer.title, beer_path(beer.page.title_for_url),
       { :title => beer.title }
   end
   
