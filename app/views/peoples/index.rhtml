@@ -9,6 +9,6 @@
 <%= render :partial => 'shared/pagination_links' %>
 
 <% content_for :sidebar do -%>
-  <%= link_to 'Create a new person', new_people_path %><br />
+  <%= new_people_link %><br />
   <%= render :partial => 'shared/tag_cloud' %>
 <% end -%>
