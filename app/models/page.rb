@@ -68,11 +68,18 @@ class Page < ActiveRecord::Base
   #
   def update_html
     # need to filter HTML first... remove <script> and chunks and the like...
-    res = RedCloth.new(self.redcloth.to_s.strip_tags, [ :no_span_caps ])
+    res = RedCloth.new(strip_tags(self.redcloth.to_s), [ :no_span_caps ])
     self.html = res.to_html(
       # no link references. messes up lines starting with [[WikiWord]]
       :block_textile_table, :block_textile_lists, :block_textile_prefix,
       :inline_textile_image, :inline_textile_link, :inline_textile_code,
       :inline_textile_span, :glyphs_textile)
+  end
+  
+  ##
+  # Removes HTML tags from a string
+  #
+  def strip_tags(str)
+    str.gsub(/\</, "&lt;").gsub(/\>/, "&gt;")
   end
 end
