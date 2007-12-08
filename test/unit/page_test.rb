@@ -11,12 +11,6 @@ class PageTest < Test::Unit::TestCase
     assert_destroy('Page')
   end
 
-  def test_no_html_in_tag
-    p = Page.new :title => 'test page', :redcloth => '<ul><li>list</li></ul>'
-    p.save
-    assert p.html !~ /ul/
-  end
-
   def test_url_titles
     p = Page.new :title => 'Test Title'
     assert Page.title_from_url('Test_Title') == p.title
