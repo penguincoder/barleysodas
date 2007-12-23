@@ -1,0 +1,14 @@
+<p>
+  <label for="role_name">Name</label> <%= text_field :role, :name %>
+</p>
+<p>
+  <label for="role_code">Code</label> <%= text_field :role, :code %>
+</p>
+<p>
+  <label for="role_parent_id">Parent</label> <%= select :role, :parent_id, Role.for_select, { :include_blank => true, :selected => @role.parent_id.to_s } %>
+</p>
+<h3>Permissions</h3>
+<p><%= link_to_function "Check All", "set_all_checkboxes('role_form', 'role[permission_ids][]', true);" -%> <%= link_to_function "Uncheck All", "set_all_checkboxes('role_form', 'role[permission_ids][]', false);" -%>
+<ul>
+<%= render :partial => 'permission', :collection => Permission.find_for_form -%>
+</ul>

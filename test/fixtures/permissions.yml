@@ -1,0 +1,145 @@
+--- 
+permissions_030: 
+  http_method: 
+  action: destroy
+  controller: peoples
+permissions_019: 
+  http_method: 
+  action: new
+  controller: pages
+permissions_008: 
+  http_method: 
+  action: update
+  controller: breweries
+permissions_031: 
+  http_method: 
+  action: new
+  controller: roles
+permissions_020: 
+  http_method: 
+  action: update
+  controller: pages
+permissions_009: 
+  http_method: 
+  action: create
+  controller: breweries
+permissions_032: 
+  http_method: 
+  action: update
+  controller: roles
+permissions_021: 
+  http_method: 
+  action: create
+  controller: pages
+permissions_010: 
+  http_method: 
+  action: edit
+  controller: breweries
+permissions_033: 
+  http_method: 
+  action: create
+  controller: roles
+permissions_022: 
+  http_method: 
+  action: edit
+  controller: pages
+permissions_011: 
+  http_method: 
+  action: index
+  controller: breweries
+permissions_034: 
+  http_method: 
+  action: edit
+  controller: roles
+permissions_023: 
+  http_method: 
+  action: index
+  controller: pages
+permissions_012: 
+  http_method: 
+  action: destroy
+  controller: breweries
+permissions_001: 
+  http_method: 
+  action: new
+  controller: beers
+permissions_035: 
+  http_method: 
+  action: index
+  controller: roles
+permissions_024: 
+  http_method: 
+  action: destroy
+  controller: pages
+permissions_013: 
+  http_method: 
+  action: new
+  controller: discussions
+permissions_002: 
+  http_method: 
+  action: update
+  controller: beers
+permissions_036: 
+  http_method: 
+  action: destroy
+  controller: roles
+permissions_025: 
+  http_method: 
+  action: new
+  controller: peoples
+permissions_014: 
+  http_method: 
+  action: update
+  controller: discussions
+permissions_003: 
+  http_method: 
+  action: create
+  controller: beers
+permissions_026: 
+  http_method: 
+  action: update
+  controller: peoples
+permissions_015: 
+  http_method: 
+  action: create
+  controller: discussions
+permissions_004: 
+  http_method: 
+  action: edit
+  controller: beers
+permissions_027: 
+  http_method: 
+  action: create
+  controller: peoples
+permissions_016: 
+  http_method: 
+  action: edit
+  controller: discussions
+permissions_005: 
+  http_method: 
+  action: index
+  controller: beers
+permissions_028: 
+  http_method: 
+  action: edit
+  controller: peoples
+permissions_017: 
+  http_method: 
+  action: index
+  controller: discussions
+permissions_006: 
+  http_method: 
+  action: destroy
+  controller: beers
+permissions_029: 
+  http_method: 
+  action: index
+  controller: peoples
+permissions_018: 
+  http_method: 
+  action: destroy
+  controller: discussions
+permissions_007: 
+  http_method: 
+  action: new
+  controller: breweries

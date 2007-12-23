@@ -3,6 +3,7 @@ class CreatePeoples < ActiveRecord::Migration
     create_table :peoples do |t|
       t.column :title, :string
     end
+    People.create :title => 'Guest', :page => Page.new
   end
 
   def self.down

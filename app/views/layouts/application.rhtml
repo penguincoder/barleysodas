@@ -8,6 +8,9 @@
   <script type="text/javascript">
   <%= @content_for_script %>
   </script>
+  <style type="text/css">
+  <%= @content_for_stylesheet %>
+  </style>
 </head>
 
 <body>
@@ -27,6 +30,7 @@
   <div id="content">
     <%= yield %>
   </div>
+<% unless @hide_sidebar -%>
   <div id="sidebar">
     <%= link_to_unless_current 'Browse The Beer Wiki', pages_path -%><br />
     <%= link_to_unless_current 'Browse Beers', beers_path -%><br />
@@ -34,15 +38,17 @@
     <%= link_to_unless_current 'Discussions', discussions_path -%><br />
     <%= link_to_unless_current 'Peoples', peoples_path -%><br />
     <%= link_to_unless_current 'Roles', roles_path -%><br />
+    <% unless logged_in? -%><%= link_to_unless_current 'Login', new_session_path -%><% else -%><%= link_to 'Logout', session_path(:id => session[:people_title]), :method => :delete -%><% end %>
     <hr />
     <%= yield :sidebar %>
   </div>
+<% end -%>
   <br style="clear:both;" />
 </div>
 
 <div id="footer">
   <hr />
-  <p><a href="http://www.penguincoder.org">PenguinCoder</a></p>
+  <p><a href="http://www.penguincoder.org" title="Built by PenguinCoder">PenguinCoder</a> | <a href="http://www.quotedprintable.com/pages/scribbish" title="Scribbish">Scribbish</a></p>
 </div>
 
 </div>

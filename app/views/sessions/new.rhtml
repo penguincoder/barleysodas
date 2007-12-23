@@ -1,0 +1,6 @@
+<% form_for(:session, @people, :url => sessions_path, :html => { :method => :post }) do |f| -%>
+  <p>
+    <label for="login">People</label> <%= text_field_tag 'login' -%>
+  </p>
+  <%= submit_tag 'Login' %>
+<% end -%>

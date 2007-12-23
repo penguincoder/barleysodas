@@ -5,16 +5,11 @@ class People < ActiveRecord::Base
   has_one_tuxwiki_page :owner_class => 'People'
   belongs_to :role
   attr_protected :role_id
-  validates_presence_of :role_id
-  
-  before_create :set_base_role
-  
-  protected
   
   ##
-  # Sets the Role to the top level model.
+  # Finds the Guest user for the system.
   #
-  def set_base_role
-    self.role = Role.base_role
+  def self.guest_user
+    self.find_by_title('Guest') rescue nil
   end
 end

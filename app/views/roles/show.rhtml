@@ -1,0 +1,15 @@
+<h1><%= @role.name -%></h1>
+
+<ul>
+<% unless @role.permissions.empty? -%>
+<% @role.permissions.collect { |p| -%><li><%= p -%></li><% } -%>
+<% else -%>
+<li>No associated permissions.</li>
+<% end -%>
+</ul>
+
+<% content_for :sidebar do -%>
+  <%= new_role_link -%><br />
+  <%= edit_role_link(@role) -%><br />
+  <%= link_to 'Destroy Role', role_path(@role.code), :confirm => 'Are you sure?', :method => :delete -%><br />
+<% end -%>

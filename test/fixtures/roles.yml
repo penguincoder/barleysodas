@@ -1,5 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 one:
   id: 1
-  title: penguin coder
-  role_id: 1
+  code: base
+  name: Base Role
+two:
+  id: 2
+  code: admin
+  name: Administrative Role

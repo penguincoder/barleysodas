@@ -26,7 +26,7 @@ class PeoplesControllerTest < Test::Unit::TestCase
   
   def test_should_create_people
     old_count = People.count
-    post :create, :people => { :title => '1' }
+    post :create, :people => { :title => 'mypeople', :role_id => 1 }
     assert_equal old_count+1, People.count
     
     assert_redirected_to people_path(assigns(:people).page.title_for_url)

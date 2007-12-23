@@ -1,0 +1,13 @@
+<%= error_messages_for :role %>
+
+<% form_for(:role, :url => role_path(@role.code), :html => { :id => 'role_form', :method => :put }) do |f| %>
+  <%= render :partial => 'role_form' %>
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<% content_for :sidebar do -%>
+  <%= new_role_link -%><br />
+  <%= show_role_link(@role) -%><br />
+<% end -%>

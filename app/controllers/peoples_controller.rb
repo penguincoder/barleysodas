@@ -41,6 +41,7 @@ class PeoplesController < ApplicationController
   # POST /peoples.xml
   def create
     @people = People.new(params[:people])
+    set_people_role
     @page = Page.new(params[:page])
     @people.page = @page
     respond_to do |format|
@@ -60,6 +61,7 @@ class PeoplesController < ApplicationController
   # PUT /peoples/1.xml
   def update
     @people.attributes = params[:people]
+    set_people_role
     @page.attributes = params[:page]
     respond_to do |format|
       if @people.update_attributes(params[:people])
@@ -90,5 +92,12 @@ class PeoplesController < ApplicationController
       :include => [ 'page' ])
     raise ActiveRecord::RecordNotFound.new if @people.nil?
     @page = @people.page
+  end
+  
+  def set_people_role
+    # set checks here for valid role assignment
+    if params[:people] and params[:people][:role_id]
+      @people.role_id = params[:people][:role_id]
+    end
   end
 end

@@ -1,0 +1,13 @@
+<ul>
+<% unless @roles.empty? -%>
+<% for role in @roles %>
+  <li><%= show_role_link(role) -%></li>
+<% end %>
+<% else -%>
+<li>No roles, yet.</li>
+<% end -%>
+</ul>
+
+<% content_for :sidebar do -%>
+  <%= new_role_link -%><br />
+<% end -%>
