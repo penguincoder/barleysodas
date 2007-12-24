@@ -14,34 +14,37 @@ body {
 }
 
 #container {
-  width: 795px;
+  max-width: 795px;
   text-align: left; 
   margin: 0 auto; padding: 0;
 }
 
 #header {
   height: 62px; 
-  margin: 0 -0.5px 12px 0; padding: 0;
+  margin: 0px; padding: 5px;
 }
 
 #page {}
 
 #content {
   float: left;
-  width: 590px;
-  padding: 0 0 0 5px; 
+  width: 605px;
+  padding-left: 5px;
 }
 
 #sidebar {
   float: right;
   text-align: left;
-  width: 180px;
-  padding-left: 15px; 
+  width: 150px;
+  padding-left: 15px;
+  padding-top: 5px;
   border-left: 1px dotted #ddd; 
 }
 
 #footer {
-  height: 40px; 
-  margin: 10px 0 0; padding: 10px 0 0;
-  clear:both; 
+  height: 40px;
+  margin: 0px;
+  padding-left: 10px;
+  padding-top: 5px;
+  clear: both;
 }
