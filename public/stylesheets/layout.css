@@ -10,11 +10,11 @@
  */
 body {
   text-align: center;
-  margin: 0; padding: 0.6em 1em 1em 1em; 
+  margin: 0; padding: 1em auto;
 }
 
 #container {
-  width: 900px;
+  width: 795px;
   text-align: left; 
   margin: 0 auto; padding: 0;
 }
@@ -28,14 +28,14 @@ body {
 
 #content {
   float: left;
-  width: 662px;
+  width: 590px;
   padding: 0 0 0 5px; 
 }
 
 #sidebar {
   float: right;
   text-align: left;
-  width: 200px;
+  width: 180px;
   padding-left: 15px; 
   border-left: 1px dotted #ddd; 
 }
