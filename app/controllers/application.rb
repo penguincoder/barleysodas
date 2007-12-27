@@ -2,7 +2,9 @@ class ApplicationController < ActionController::Base
   session :session_key => '_barleysodas_session_id'
   append_before_filter :block_prefetching_links
   append_before_filter :authorized?
+  append_before_filter :set_current_people_id
   helper_method :logged_in?
+  cattr_accessor :current_people_id
   
   ##
   # Ensures that the request was made using an Ajax request.
@@ -141,5 +143,12 @@ class ApplicationController < ActionController::Base
       role = role.parent
     end
     false
+  end
+  
+  ##
+  # Sets a class accessor for the current People.
+  #
+  def set_current_people_id
+    self.current_people_id = session[:people_id]
   end
 end

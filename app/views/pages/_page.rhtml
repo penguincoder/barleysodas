@@ -4,7 +4,7 @@
     <%= @page.title %>
   </h2>
   <% unless simple -%><div class="vcard">
-    Posted by <span class="fn">Author Name Here</span>
+    Posted by <span class="fn"><%= @page.created_by.title rescue 'That other guy' -%></span>
   </div><% end -%>
   <br class="clear" />
   <div class="entry-content">
@@ -16,6 +16,7 @@
     <% @page.owner.page_attributes.each do |x| -%>
     <li><%= x -%></li>
     <% end if @page.owner and @page.owner.respond_to?("page_attributes") %>
+    <% if @page.created_by != @page.updated_by -%><li>Last updated by: <%= @page.updated_by.title rescue 'That other other guy' -%></li><% end %>
   </ul><% end -%>
 </div>
 

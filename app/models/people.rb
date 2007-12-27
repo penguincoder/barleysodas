@@ -5,6 +5,8 @@ class People < ActiveRecord::Base
   has_one_tuxwiki_page :owner_class => 'People'
   belongs_to :role
   attr_protected :role_id
+  has_many :created_pages, :class_name => 'Page', :foreign_key => 'created_by'
+  has_many :updated_pages, :class_name => 'Page', :foreign_key => 'updated_by'
   
   ##
   # Finds the Guest user for the system.

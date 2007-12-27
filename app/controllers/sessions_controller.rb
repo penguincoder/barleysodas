@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     @people = People.find_by_title(params[:login]) rescue nil
     if @people
       session[:people_title] = @people.title
+      session[:people_id] = @people.id
       respond_to do |format|
         format.html {
           flash[:info] = "Welcome, #{@people.title}"

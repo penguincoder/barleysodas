@@ -18,13 +18,19 @@ class Page < ActiveRecord::Base
   has_many :discussions, :order => 'discussions.created_at ASC',
     :dependent => :destroy
   
+  belongs_to :created_by, :class_name => 'People', :foreign_key => 'created_by'
+  belongs_to :updated_by, :class_name => 'People', :foreign_key => 'updated_by'
+  
   validates_presence_of :title
   validates_uniqueness_of :title, :scope => 'owner_type'
   validates_format_of :title, :with => /^([A-Za-z0-9 ])+$/,
     :message => 'may only contain letters, numbers and spaces'
   before_save :update_html
   
-  attr_protected :allow_discussions
+  before_create :set_created_person
+  before_save :set_updated_person
+  
+  attr_protected :allow_discussions, :created_by, :updated_by
   
   ##
   # Returns an url-friendly title for making links.
@@ -62,6 +68,20 @@ class Page < ActiveRecord::Base
   end
   
   protected
+  
+  ##
+  # Sets the People marker for created_by on creation.
+  #
+  def set_created_person
+    self[:created_by] = ApplicationController.current_people_id
+  end
+  
+  ##
+  # Sets the People marker for updated_by on save.
+  #
+  def set_updated_person
+    self[:updated_by] = ApplicationController.current_people_id
+  end
   
   ##
   # Updates the HTML chunk from the RedCloth source.
