@@ -14,4 +14,11 @@ class People < ActiveRecord::Base
   def self.guest_user
     self.find_by_title('Guest') rescue nil
   end
+  
+  ##
+  # Finds me.
+  #
+  def self.penguincoder
+    self.find_by_title('PenguinCoder') rescue nil
+  end
 end
