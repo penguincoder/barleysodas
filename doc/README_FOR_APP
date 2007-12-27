@@ -4,6 +4,6 @@ All code is released under the GPLv2.
 
 A socially inviting application of beer drinkers.
 
-== Requires: ==
+== Requires:
 * RedCloth (developed with 3.0.4)
 * Rails 1.2.3
