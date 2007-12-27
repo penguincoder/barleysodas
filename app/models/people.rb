@@ -19,6 +19,7 @@ class People < ActiveRecord::Base
   # Finds me.
   #
   def self.penguincoder
-    self.find_by_title('PenguinCoder') rescue nil
+    @penguincoder ||= self.find_by_title('PenguinCoder') rescue nil
+    @penguincoder
   end
 end
