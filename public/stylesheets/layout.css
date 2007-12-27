@@ -36,9 +36,8 @@ body {
   float: right;
   text-align: left;
   width: 150px;
-  padding-left: 15px;
-  padding-top: 5px;
-  border-left: 1px dotted #ddd; 
+  padding: 5px 0px 5px 15px;
+  border-left: 1px dotted #ddd;
 }
 
 #footer {
