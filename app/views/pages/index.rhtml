@@ -10,6 +10,7 @@
 <% end -%>
 
 <% content_for :sidebar do -%>
+  <%= edit_page_link(@page) -%><br />
   <%= new_page_link -%><br />
   <%= render :partial => 'shared/tag_cloud' %>
 <% end -%>
