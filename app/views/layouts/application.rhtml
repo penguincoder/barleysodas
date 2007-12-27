@@ -38,6 +38,7 @@
     <%= link_to_unless_current 'Discussions', discussions_path -%><br />
     <%= link_to_unless_current 'Peoples', peoples_path -%><br />
     <%= link_to_unless_current 'Roles', roles_path -%><br />
+    <%= link_to_unless_current 'Help', :controller => 'help', :action => 'index' -%><br />
     <% unless logged_in? -%><%= link_to_unless_current 'Login', new_session_path -%><% else -%><%= link_to 'Logout', session_path(:id => session[:people_title]), :method => :delete -%><% end %>
     <hr />
     <%= yield :sidebar %>

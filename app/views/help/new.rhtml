@@ -1,0 +1,11 @@
+<%= error_messages_for :page %>
+
+<% form_for(:help, :url => { :controller => 'help', :action => 'index' }, :html => { :method => :post }) do |f| %>
+  <p>
+    <label for="page_title">Title</label> <%= text_field 'page', 'title' %>
+  </p>
+  <%= render :partial => 'pages/page_form' %>
+  <p>
+    <%= submit_tag "Create" %>
+  </p>
+<% end %>
