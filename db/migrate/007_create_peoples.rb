@@ -4,6 +4,7 @@ class CreatePeoples < ActiveRecord::Migration
       t.column :title, :string
     end
     People.create :title => 'Guest', :page => Page.new
+    People.create :title => 'PenguinCoder', :page => Page.new
   end
 
   def self.down

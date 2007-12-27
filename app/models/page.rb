@@ -73,14 +73,16 @@ class Page < ActiveRecord::Base
   # Sets the People marker for created_by on creation.
   #
   def set_created_person
-    self[:created_by] = ApplicationController.current_people_id
+    self[:created_by] = ApplicationController.current_people_id rescue nil
+    self.created_by ||= People.penguincoder
   end
   
   ##
   # Sets the People marker for updated_by on save.
   #
   def set_updated_person
-    self[:updated_by] = ApplicationController.current_people_id
+    self[:updated_by] = ApplicationController.current_people_id rescue nil
+    self.created_by ||= People.penguincoder
   end
   
   ##
