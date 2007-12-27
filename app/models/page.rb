@@ -7,7 +7,7 @@
 # Bonuses:
 # * Uses RedCloth markup.
 # * Automatically converts/caches HTML
-# * Allows any character or space in the name
+# * Allows any alphanumeric character or space in the name
 # * Uses [[ and ]] for WikiWord representation.
 #
 class Page < ActiveRecord::Base
@@ -74,7 +74,7 @@ class Page < ActiveRecord::Base
   #
   def set_created_person
     self[:created_by] = ApplicationController.current_people_id rescue nil
-    self[:created_by] ||= People.penguincoder
+    self[:created_by] ||= People.penguincoder.id
   end
   
   ##
@@ -82,7 +82,7 @@ class Page < ActiveRecord::Base
   #
   def set_updated_person
     self[:updated_by] = ApplicationController.current_people_id rescue nil
-    self[:updated_by] ||= People.penguincoder
+    self[:updated_by] ||= People.penguincoder.id
   end
   
   ##
