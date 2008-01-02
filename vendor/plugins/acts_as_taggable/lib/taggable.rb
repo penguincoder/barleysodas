@@ -185,7 +185,7 @@ module ActiveRecord
           write_inheritable_attribute(:tag_options, options)
 
           [ :collection, :tag_class_name, :join_class_name ].each { |key| options.delete(key) } # remove these, we don't need it anymore
-          [ :join_table, :association_foreign_key ].each { |key| options.delete(key) } if join_model # don�t need this for has_many
+          [ :join_table, :association_foreign_key ].each { |key| options.delete(key) } if join_model # don't need this for has_many
 
           # now, finally add the proper relationships
           class_eval do
@@ -439,10 +439,7 @@ module ActiveRecord
         # Returns an array of strings containing the tags applied to this object.
         # If +reload+ is +true+, the tags collection is reloaded.
         def tag_names(reload = false)
-          ary = tag_collection(reload).map { |tag| tag.name }
-          ary.extend(TagNamesMixin)
-          ary.set_tag_container(self)
-          ary
+          ary = tag_collection(reload).map { |tag| tag.name }.join(' ')
         end
 
         # Checks to see if this object has been tagged with +tag_name+.
