@@ -38,7 +38,7 @@
     <%= link_to_unless_current 'Discussions', discussions_path -%><br />
     <%= link_to_unless_current 'Peoples', peoples_path -%><br />
     <%= link_to_unless_current 'Roles', roles_path -%><br />
-    <%= link_to_unless_current 'Help', :controller => 'help', :action => 'index' -%><br />
+    <%= link_to_unless_current 'Help With BarleySodas', :controller => 'help', :action => 'index' -%><br />
     <% unless logged_in? -%><%= link_to_unless_current 'Login', new_session_path -%><% else -%><%= link_to 'Logout', session_path(:id => session[:people_title]), :method => :delete -%><% end %>
     <hr />
     <%= yield :sidebar %>
@@ -49,7 +49,7 @@
 
 <div id="footer">
   <hr />
-  <p><a href="http://www.penguincoder.org" title="Built by PenguinCoder">PenguinCoder</a> | <a href="http://www.quotedprintable.com/pages/scribbish" title="Scribbish">Scribbish</a></p>
+  <p><a href="http://www.penguincoder.org" title="Built by PenguinCoder">PenguinCoder</a> | <a href="http://www.quotedprintable.com/pages/scribbish" title="Scribbish">Scribbish</a> | <a href="http://collaboa.barleysodas.com" title="BarleySodas Development">BarleySodas Development</a></p>
 </div>
 
 </div>
