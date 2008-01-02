@@ -1,9 +1,12 @@
 class ApplicationController < ActionController::Base
   session :session_key => '_barleysodas_session_id'
+  
   append_before_filter :block_prefetching_links
   append_before_filter :authorized?
   append_before_filter :set_current_people_id
+  
   helper_method :logged_in?
+  
   cattr_accessor :current_people_id
   
   ##
@@ -22,39 +25,21 @@ class ApplicationController < ActionController::Base
   end
   
   ##
-  # Saves the request uri in the session for later redirect after a login.
-  #
-  def save_request_url
-    session[:request_url] = request.request_uri
-  end
-  
-  ##
-  # Checks to see if the currently requested uri is the same as the uri saved
-  # in the session.
-  #
-  def already_saved_request_url
-    return true if session[:request_url] and
-      session[:request_url] == request.request_uri
-    false
-  end
-  
-  ##
   # Determines if a user can access an action.
   #
   def authorized?
     return true if has_permission_for_action?
     respond_to do |format|
       format.html {
-        # prevent double-redirects to the login page if for some reason it is
-        # not allowed
-        unless logged_in? and !already_saved_request_url
-          save_request_url
+        if !logged_in?
+          session[:request_url] = request.request_uri
           redirect_to new_session_path
           return
         end
         @content_title = 'Forbidden'
         @secondary_title = ''
         @hide_sidebar = true
+        session[:request_url] = nil if !logged_in?
         render :template => 'shared/unauthorized'
       }
       format.xml { render :nothing => true, :status => 403 }
@@ -81,11 +66,62 @@ class ApplicationController < ActionController::Base
   end
   
   ##
-  # Sets the <tt>@page</tt> variable to allow discussions. This should probably
+  # Sets the +@page+ variable to allow discussions. This should probably
   # have some kind of permission availability check later on.
   #
   def allow_page_discussions
     @page.allow_discussions = true
+  end
+  
+  protected
+  
+  ##
+  # Finds an object model for the particular resource requested. This will be
+  # used to find any model in the current pattern and maybe even the associated
+  # Page model.
+  #
+  def fetch_model
+    # where
+    obj_type = params[:controller]
+    # what
+    tfu = Page.title_from_url(params[:id])
+    
+    # conditions for find
+    cond_ary = [
+      'title = :model_title'
+    ]
+    cond_var = {
+      :model_title => tfu,
+      :help_owner_type => 'Help'
+    }
+    # specific overrides for help, this has an owner type but it is just a Page
+    if obj_type == 'help'
+      cond_ary << 'owner_type = :help_owner_type'
+      obj_type = 'pages'
+    elsif obj_type == 'pages'
+      cond_ary << 'owner_type IS NULL'
+    end
+    # the eventual name of the instance variable, like +@page+
+    obj_name = obj_type.singularize
+    
+    # find the object
+    obj = Class.class_eval(obj_name.camelize).find(:first,
+      :conditions => [ cond_ary.join(' AND '), cond_var ])
+    
+    # allow the chance to make a new one if you GET the URL
+    if request.get? and obj.nil?
+      flash[:info] = "The #{obj_name} was not found, would you like to make it?"
+      redirect_to :action => 'new', :new_title => tfu
+      return
+    elsif obj.nil?
+      # fail if not found
+      raise ActiveRecord::RecordNotFound.new
+    end
+    # set the class variable
+    instance_variable_set("@#{obj_name}", obj)
+    # set the associated page if necessary
+    @page = obj.page if obj.respond_to?('page')
+    true
   end
   
   private

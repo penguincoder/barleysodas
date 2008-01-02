@@ -3,9 +3,8 @@ Permission.destroy_all
 base_actions = ApplicationController.action_methods
 # i should probably figure out all of the children of ApplicationController
 # rather than defining them here.
-controllers = [ AutocompleteController, SessionsController, PagesController,
-  PeoplesController, BeersController, BreweriesController, RolesController,
-  DiscussionsController, HelpController ]
+controllers = [ PagesController, HelpController, DiscussionsController,
+  PeoplesController, BeersController, BreweriesController, RolesController ]
 controllers.each do |c|  
   actions = c.action_methods - base_actions
   cname = c.controller_name
@@ -14,17 +13,12 @@ end
 
 r = Role.base_role
 Permission.find(:all,
-  :conditions => [ 'controller = ?', 'autocomplete' ]).each do |p|
-  r.permissions << p
-end
-
-Permission.find(:all,
-  :conditions => [ 'controller = ?', 'sessions' ]).each do |p|
-  r.permissions << p
-end
-
-Permission.find(:all,
   :conditions => [ 'controller = ?', 'pages' ]).each do |p|
+  next if [ 'new', 'create', 'edit', 'update', 'destroy' ].include?(p.action)
+  r.permissions << p
+end
+Permission.find(:all,
+  :conditions => [ 'controller = ?', 'help' ]).each do |p|
   next if [ 'new', 'create', 'edit', 'update', 'destroy' ].include?(p.action)
   r.permissions << p
 end
@@ -33,11 +27,5 @@ r2 = Role.admin_role
 Permission.find(:all).each do |p|
   r2.permissions << p unless r.permissions.include?(p)
 end
-
-p = People.new :title => 'penguincoder'
-page = Page.new
-p.page = page
-p.role = r2
-p.save
 
 puts "All permissions created"

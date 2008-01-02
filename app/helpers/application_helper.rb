@@ -68,4 +68,29 @@ module ApplicationHelper
   def tag_cloud_styles
     %w(tag_cloud_1 tag_cloud_2 tag_cloud_3 tag_cloud_4 tag_cloud_5)
   end
+  
+  ##
+  # Replaces a WikiWord link with a link to a Page, if it exists.
+  #
+  def replace_wiki_words(str)
+    str.gsub(/\[\[([A-Za-z0-9 \\]+)\]\]/) do |match|
+      c_string, page_string = params[:controller], $1
+      if $1.match(/\\/)
+        ary = $1.split(/\\/)
+        c_string, page_string = ary.first, ary.last
+      end
+      owner_type = c_string.singularize.humanize
+      res = ''
+      if Page.exists?(page_string, owner_type)
+        res = link_to(page_string, { :controller => c_string, :action => :show,
+          :id => page_string.gsub(/ /, '_') },
+          { :title => "View #{page_string}" })
+      else
+        res = link_to(page_string, { :controller => c_string,
+          :action => :new, :new_title => page_string },
+          { :title => "Create #{page_string}" }) + '?'
+      end
+      res
+    end
+  end
 end

@@ -8,10 +8,10 @@
   </div><% end -%>
   <br class="clear" />
   <div class="entry-content">
-    <%= @page.html %>
+    <%= replace_wiki_words(@page.html) %>
   </div>
   <% unless simple -%><ul class="meta">
-    <% if @page.tags.size > 0 -%><li>Tags: <%= @page.tag_names.sort.join(' ') -%></li><% end -%>
+    <% if @page.tags.size > 0 -%><li>Tags: <%= @page.tags.collect { |t| t.name }.sort.join(' ') -%></li><% end -%>
     <li>Version: <%= @page.version -%></li>
     <% @page.owner.page_attributes.each do |x| -%>
     <li><%= x -%></li>

@@ -1,8 +1,9 @@
 class HelpController < ApplicationController
-  append_before_filter :fetch_page, :only => [ :show, :edit, :update, :destroy ]
+  append_before_filter :fetch_model,
+    :only => [ :show, :edit, :update, :destroy ]
   
-  # GET /helps
-  # GET /helps.xml
+  # GET /help
+  # GET /help.xml
   def index
     @page = Page.find_by_title_and_owner_type 'HomePage', 'Help'
     @content_title = 'BarleySodas Help'
@@ -11,8 +12,8 @@ class HelpController < ApplicationController
       :owner_type => 'Help')
   end
   
-  # GET /helps/1
-  # GET /helps/1.xml
+  # GET /help/1
+  # GET /help/1.xml
   def show
     @secondary_title = ''
     respond_to do |format|
@@ -21,19 +22,20 @@ class HelpController < ApplicationController
     end
   end
   
-  # GET /helps/new
+  # GET /help/new
   def new
     @page = Page.new
+    @page.title = params[:new_title] if params[:new_title]
     @secondary_title = 'Creating help page'
   end
   
-  # GET /helps/1;edit
+  # GET /help/1;edit
   def edit
     @secondary_title = 'Updating help page'
   end
   
-  # POST /helps
-  # POST /helps.xml
+  # POST /help
+  # POST /help.xml
   def create
     @page = Page.new(params[:page])
     @page.owner_type = 'Help'
@@ -59,8 +61,8 @@ class HelpController < ApplicationController
     end
   end
   
-  # PUT /helps/1
-  # PUT /helps/1.xml
+  # PUT /help/1
+  # PUT /help/1.xml
   def update
     @page.attributes = params[:page]
     respond_to do |format|
@@ -84,21 +86,13 @@ class HelpController < ApplicationController
     end
   end
   
-  # DELETE /helps/1
-  # DELETE /helps/1.xml
+  # DELETE /help/1
+  # DELETE /help/1.xml
   def destroy
     @page.destroy
     respond_to do |format|
       format.html { redirect_to :controller => 'help', :action => 'index' }
       format.xml  { head :ok }
     end
-  end
-  
-  protected
-  
-  def fetch_page
-    @page = Page.find_by_title_and_owner_type(Page.title_from_url(params[:id]),
-      'Help')
-    raise ActiveRecord::RecordNotFound.new if @page.nil?
   end
 end

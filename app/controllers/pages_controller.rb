@@ -1,10 +1,11 @@
 class PagesController < ApplicationController
-  append_before_filter :fetch_page, :only => [ :show, :edit, :update, :destroy ]
+  append_before_filter :fetch_model,
+    :only => [ :show, :edit, :update, :destroy ]
   
   # GET /pages
   # GET /pages.xml
   def index
-    @page = Page.find_by_title 'HomePage'
+    @page = Page.find_by_title_and_owner_type 'HomePage', nil
     @page ||= Page.create :title => 'HomePage',
       :redcloth => 'Welcome to BarleySodas!'
     @content_title = 'The Beer Wiki'
@@ -15,7 +16,7 @@ class PagesController < ApplicationController
     @pages, @wiki_pages = paginate :page, :per_page => 25,
       :order => 'title ASC', :conditions => [ cond_ary.join(' AND ') ]
     
-    @tags = Page.tags(:limit => 25, :order => "name DESC")
+    @tags = Page.tags(:limit => 25, :order => "name ASC")
     
     respond_to do |format|
       format.html # index.rhtml
@@ -34,6 +35,7 @@ class PagesController < ApplicationController
   # GET /pages/new
   def new
     @page = Page.new
+    @page.title = params[:new_title] if params[:new_title]
   end
   
   # GET /pages/1;edit
@@ -65,7 +67,13 @@ class PagesController < ApplicationController
     respond_to do |format|
       if @page.save
         flash[:notice] = 'Page was successfully updated.'
-        format.html { redirect_to page_url({ :id => @page.title_for_url }) }
+        format.html {
+          if @page.title == 'HomePage'
+            redirect_to pages_url
+          else
+            redirect_to page_url({ :id => @page.title_for_url })
+          end
+        }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -89,12 +97,5 @@ class PagesController < ApplicationController
   #
   def default_action
     redirect_to(pages_path)
-  end
-  
-  protected
-  
-  def fetch_page
-    @page = Page.find_by_title(Page.title_from_url(params[:id]))
-    raise ActiveRecord::RecordNotFound.new if @page.nil?
   end
 end

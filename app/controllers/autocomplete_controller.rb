@@ -24,4 +24,14 @@ class AutocompleteController < ApplicationController
         "%#{params[key][@value].downcase}%" ])
     render :partial => 'autocomplete/results'
   end
+  
+  protected
+  
+  ##
+  # Allow pretty much everybody in here. Most likely this will not be able to
+  # be misused. At least not right now.
+  #
+  def authorized?
+    true
+  end
 end

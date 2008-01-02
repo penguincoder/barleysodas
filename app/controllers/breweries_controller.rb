@@ -1,6 +1,6 @@
 class BreweriesController < ApplicationController
-  append_before_filter :get_brewery_and_page, :only => [ :show, :edit, :update,
-    :destroy ]
+  append_before_filter :fetch_model,
+    :only => [ :show, :edit, :update, :destroy ]
   
   # GET /breweries
   # GET /breweries.xml
@@ -31,6 +31,7 @@ class BreweriesController < ApplicationController
   # GET /breweries/new
   def new
     @brewery = Brewery.new
+    @brewery.title = params[:new_title] if params[:new_title]
     @page = Page.new
   end
   
@@ -83,14 +84,5 @@ class BreweriesController < ApplicationController
       format.html { redirect_to breweries_url }
       format.xml  { head :ok }
     end
-  end
-  
-  protected
-  
-  def get_brewery_and_page
-    @brewery = Brewery.find_by_title(Page.title_from_url(params[:id]),
-      :include => [ 'page' ])
-    raise ActiveRecord::RecordNotFound.new if @brewery.nil?
-    @page = @brewery.page
   end
 end

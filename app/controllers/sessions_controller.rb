@@ -39,4 +39,13 @@ class SessionsController < ApplicationController
     reset_session
     redirect_to '/'
   end
+  
+  protected
+  
+  ##
+  # Always allow People to log in and out of the system.
+  #
+  def authorized?
+    true
+  end
 end

@@ -1,6 +1,6 @@
 class PeoplesController < ApplicationController
-  append_before_filter :fetch_people_and_page, :only => [ :show, :edit,
-    :update, :destroy ]
+  append_before_filter :fetch_model,
+    :only => [ :show, :edit, :update, :destroy ]
   
   # GET /peoples
   # GET /peoples.xml
@@ -30,6 +30,7 @@ class PeoplesController < ApplicationController
   def new
     @secondary_title = 'Sign up for BarleySodas!'
     @people = People.new
+    @people.title = params[:new_title] if params[:new_title]
     @page = Page.new
   end
   
@@ -86,13 +87,6 @@ class PeoplesController < ApplicationController
   end
   
   protected
-  
-  def fetch_people_and_page
-    @people = People.find_by_title(Page.title_from_url(params[:id]),
-      :include => [ 'page' ])
-    raise ActiveRecord::RecordNotFound.new if @people.nil?
-    @page = @people.page
-  end
   
   def set_people_role
     # set checks here for valid role assignment
