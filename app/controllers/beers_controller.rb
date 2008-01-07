@@ -9,10 +9,8 @@ class BeersController < ApplicationController
     @secondary_title = 'Browsing all beers'
     @pages, @beers = paginate :beers, :include => 'page', :per_page => 50,
       :order => 'beers.title ASC'
-    
     @tags = Page.tags(:limit => 25, :order => "name DESC",
       :owner_type => 'Beer')
-    
     respond_to do |format|
       format.html # index.rhtml
       format.xml  { render :xml => @beers.to_xml }
@@ -30,25 +28,21 @@ class BeersController < ApplicationController
   
   # GET /beers/new
   def new
-    @secondary_title = 'Create a new beer'
-    @beer = Beer.new
-    @beer.title = params[:new_title] if params[:new_title]
-    @page = Page.new
+    new_stuff
   end
   
   # GET /beers/1;edit
   def edit
-    @secondary_title = 'Update existing beer'
-    @brewery = @beer.brewery
+    edit_stuff
   end
   
   # POST /beers
   # POST /beers.xml
   def create
-    @beer = Beer.new(params[:beer])
-    @page = Page.new(params[:page])
-    @beer.page = @page
+    new_stuff
     allow_page_discussions
+    @page.attributes = params[:page]
+    @beer.attributes = params[:beer]
     brewery = Brewery.find_by_title(params[:brewery][:title]) rescue nil
     @beer.brewery = brewery
     respond_to do |format|
@@ -67,6 +61,7 @@ class BeersController < ApplicationController
   # PUT /beers/1
   # PUT /beers/1.xml
   def update
+    edit_stuff
     @page.attributes = params[:page]
     @beer.attributes = params[:beer]
     brewery = Brewery.find_by_title(params[:brewery][:title]) rescue nil
@@ -91,5 +86,19 @@ class BeersController < ApplicationController
       format.html { redirect_to beers_url }
       format.xml  { head :ok }
     end
+  end
+  
+  protected
+  
+  def new_stuff
+    @secondary_title = 'Create a new beer'
+    @beer = Beer.new
+    @beer.title = params[:new_title] if params[:new_title]
+    @page = Page.new
+  end
+  
+  def edit_stuff
+    @secondary_title = 'Update existing beer'
+    @brewery = @beer.brewery
   end
 end
