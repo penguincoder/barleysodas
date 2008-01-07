@@ -1,6 +1,7 @@
 <%= render :partial => 'pages/page' %>
 
 <% unless @style.children.empty? -%>
+<h2>Styles under this category</h2>
 <ol><%= @style.children.collect { |x| '<li>' + show_style_link(x) + '</li>' } -%></ol>
 <% end -%>
 
