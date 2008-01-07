@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   end
   
   def create
-    @people = People.find_by_title(params[:login]) rescue nil
+    @people = People.authenticate(params[:login], params[:password])
     if @people
       session[:people_title] = @people.title
       session[:people_id] = @people.id

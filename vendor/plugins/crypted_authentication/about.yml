@@ -1,0 +1,5 @@
+author: Luke Redpath
+email: contact@lukeredpath.co.uk
+license: MIT
+homepage: http://opensource.agileevolved.com
+summary: Yet Another Rails Authentication Plugin - or YARAP - a simple crypted authentication plugin complete with a full BDD-style test-suite. Adds basic authentication to your models.

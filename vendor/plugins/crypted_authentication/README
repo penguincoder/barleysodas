@@ -1,0 +1,45 @@
+Crypted Authentication Plugin for Rails
+=======================================
+
+This is an ultra-lightweight, simple crypted authentication plugin for Rails.
+
+It is extracted from several projects I've worked on - code that has been written many times over and over again making it an ideal candidate for extraction to a plugin. The plugin also has good test coverage. The tests were written as BDD-style specifications although I chose Test::Unit over RSpec for portability reasons
+
+== Using the plugin
+
+Using the plugin is really simple. Simply add the following call to your model:
+
+    class User < ActiveRecord::Base
+      make_authenticatable
+    end
+
+The plugin doesn't assume too much. All it requires in your schema is username, encrypted_password and salt columns. The plugin does not handle validations for you - it leaves you to decide how you want to validate but here is a good example that I use in one of my applications:
+
+		class User < ActiveRecord::Base
+		  make_authenticatable
+ 
+		  validates_presence_of :username, :message => 'cannot be blank'
+		  validates_length_of   :password, :minimum => 6, :if => :password_required?, 
+		                        :message => 'must be at least 6 characters in length'
+ 
+		  protected
+		    def password_required?
+		      self.encrypted_password.blank?
+		    end
+		end
+
+As well as the three attributes listed above, the plugin defines a standard object attribute called password. This stores the clear-text password and is not persisted to the database. The salt and encrypted_password attributes are marked as attr_protected which means you cannot assign values to them using mass assignment (such as new and create hashes). An authenticatable? instance method can be used in your own tests to assert that the plugin functionality has been added to your model.
+
+== Authentication
+
+Finally, a class-level authenticate method can be used to find a user for a given username and password. This function returns nil if no user is found.
+
+    if user = User.authenticate(params[:username], params[:password])
+      flash[:notice] = 'Logged in successfully']
+			session[:current_user] = user.id
+			redirect_to home_url
+		end
+		
+== Feedback
+		
+Please send any feedback to Luke Redpath <contact@lukeredpath.co.uk>. This plugin is licensed under the MIT license.
