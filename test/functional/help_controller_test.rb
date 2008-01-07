@@ -1,11 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'helps_controller'
+require 'help_controller'
 
 # Re-raise errors caught by the controller.
 class HelpController; def rescue_action(e) raise e end; end
 
 class HelpControllerTest < Test::Unit::TestCase
-  fixtures :helps
+  fixtures :help
 
   def setup
     @controller = HelpController.new
