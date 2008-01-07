@@ -1,6 +1,6 @@
 <li class="discussion" id="discussion-<%= discussion.id %>"<% if defined? li_number -%> value="<%= li_number -%>"<% end -%>>
   <div class="author">
-    <cite>Author Goes Here</cite>
+    <cite><%= discussion.page.created_by.title -%></cite>
     <p>Posted <%= distance_of_time_in_words discussion.created_at, Time.now rescue 'xxx' %> ago.</p>
   </div>
   <div class="content">
