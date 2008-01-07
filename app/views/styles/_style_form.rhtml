@@ -1,0 +1,20 @@
+<p>
+  <label for="style_title">Title</label> <%= text_field 'style', 'title' %>
+</p>
+<p>
+  <label for="style_position">Position</label> <%= text_field 'style', 'position' %>
+</p>
+<p>
+  <label for="style_originating_location">Originating Location</label> <%= text_field 'style', 'originating_location' %>
+</p>
+<p>
+  <label for="style_gravity_bottom">Lowest Gravity</label> <%= text_field 'style', 'gravity_bottom' %>
+</p>
+<p>
+  <label for="style_gravity_top">Highest Gravity</label> <%= text_field 'style', 'gravity_top' %>
+</p>
+<p>
+  <label for="style_parent_id">Style Parent</label> <%= select 'style', 'parent_id', Style.for_select, { :include_blank => true, :selected => @style.parent_id.to_s } %>
+</p>
+
+<%= render :partial => 'pages/page_form' %>

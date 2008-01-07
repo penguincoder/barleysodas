@@ -4,6 +4,8 @@
 class Beer < ActiveRecord::Base
   belongs_to :brewery
   has_one_tuxwiki_page :owner_class => 'Beer'
+  belongs_to :style
+  validates_presence_of :style_id
   
   ##
   # Returns a list of attributes for the Page partial.
@@ -20,6 +22,7 @@ class Beer < ActiveRecord::Base
     unless final_gravity.to_s.empty?
       pattr << "Final Gravity: #{final_gravity}"
     end
+    pattr << "Style: #{style.title}"
     pattr
   end
 end

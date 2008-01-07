@@ -1,0 +1,13 @@
+<%= error_messages_for :style %>
+
+<% form_for(:style, :url => style_path(@style.page.title_for_url), :html => { :method => :put }) do |f| %>
+<%= render :partial => 'style_form' %>
+<p>
+  <%= submit_tag "Update" %>
+</p>
+<% end %>
+
+<% content_for :sidebar do -%>
+  <%= new_style_link -%><br />
+  <%= show_style_link(@style) -%<br />
+<% end -%>

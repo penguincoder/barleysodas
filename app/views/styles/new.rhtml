@@ -1,0 +1,8 @@
+<%= error_messages_for :style %>
+
+<% form_for(:style, :url => styles_path) do |f| %>
+<%= render :partial => 'style_form' %>
+<p>
+  <%= submit_tag "Create" %>
+</p>
+<% end %>

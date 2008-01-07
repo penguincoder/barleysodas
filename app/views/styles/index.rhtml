@@ -1,0 +1,10 @@
+<% if @styles.empty? -%>
+<h1>No styles found.</h1>
+<% else -%>
+<ol><%= @styles.collect { |s| '<li>' + link_to(s.title, style_path(:id => s.page.title_for_url)) + '</li>' } %></ol>
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <%= new_style_link -%><br />
+  <%= render :partial => 'shared/tag_cloud' %>
+<% end -%>

@@ -5,7 +5,9 @@ class CreateBeers < ActiveRecord::Migration
       t.column :abv, :float
       t.column :original_gravity, :float
       t.column :final_gravity, :float
+      t.column :style_id, :integer
     end
+    add_index :beers, :style_id
   end
 
   def self.down
