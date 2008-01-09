@@ -190,8 +190,11 @@
 
 
 /* Comments and Trackbacks */
-#content ol.discussions {
+#content ol.discussions, li.discussion {
   list-style-type: none;
+}
+
+#content ol.discussions {
   margin: 0; padding: 0;
 }
 
