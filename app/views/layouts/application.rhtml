@@ -36,7 +36,7 @@
     <%= link_to_unless_current 'Browse Beers', beers_path -%><br />
     <%= link_to_unless_current 'Beverage Styles', styles_path -%><br />
     <%= link_to_unless_current 'Browse Breweries', breweries_path -%><br />
-    <%= link_to_unless_current 'Peoples', peoples_path -%><br />
+    <%= link_to_unless_current 'BarleySodas People', peoples_path -%><br />
     <% if has_permission_for_action?(:index, :roles) -%><%= link_to_unless_current 'Roles', roles_path -%><br /><% end -%>
     <%= link_to_unless_current 'Help With BarleySodas', :controller => 'help', :action => 'index' -%><br />
     <% unless logged_in? -%><%= link_to_unless_current 'Login', new_session_path -%><% else -%><%= link_to "Logout #{session[:people_title]}", session_path(:id => session[:people_title]), :method => :delete -%><% end %>
