@@ -92,15 +92,9 @@ class ApplicationController < ActionController::Base
     ]
     cond_var = {
       :model_title => tfu,
-      :help_owner_type => 'Help'
     }
-    # specific overrides for help, this has an owner type but it is just a Page
-    if obj_type == 'help'
-      cond_ary << 'owner_type = :help_owner_type'
-      obj_type = 'pages'
-    elsif obj_type == 'pages'
-      cond_ary << 'owner_type IS NULL'
-    end
+    cond_ary << 'owner_type IS NULL' if obj_type == 'pages'
+    
     # the eventual name of the instance variable, like +@page+
     obj_name = obj_type.singularize
     

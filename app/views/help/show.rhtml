@@ -1,6 +1,0 @@
-<%= render :partial => 'pages/page' %>
-
-<% content_for :sidebar do -%>
-  <%= edit_help_link(@page) -%><br />
-  <%= link_to 'Destroy', help_path(@page.title_for_url), :confirm => 'Are you sure?', :method => :delete unless @page.title == 'HomePage' -%><br />
-<% end -%>
