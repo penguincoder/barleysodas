@@ -11,13 +11,13 @@ class SessionsController < ApplicationController
       session[:people_id] = @people.id
       respond_to do |format|
         format.html {
-          flash[:info] = "Welcome, #{@people.title}"
+          flash[:notice] = "Welcome, #{@people.title}"
           if session[:request_url]
             t_url = session[:request_url]
             session[:request_url] = nil
             redirect_to t_url
           else
-            redirect_to '/'
+            redirect_to pages_path
           end
         }
         format.xml { head :ok }
@@ -37,7 +37,8 @@ class SessionsController < ApplicationController
   
   def destroy
     reset_session
-    redirect_to '/'
+    flash[:notice] = 'You have logged out.'
+    redirect_to pages_path
   end
   
   protected

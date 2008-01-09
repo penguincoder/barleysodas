@@ -417,3 +417,63 @@
   font-size: 1.1em;
   font-weight: bold;
 }
+
+/* form errors */
+.fieldWithErrors {
+  border: 1px solid #F00;
+}
+
+/* flash hash styles */
+#notice {
+  padding-top: 6px;
+  padding-bottom: 6px;  
+  padding-left: 6px;
+  background-color: #F7F4D5;
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;  
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#error {
+  padding-top: 6px;
+  padding-bottom: 6px;  
+  padding-left: 6px;
+  background-color: #FFCCCC;
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;  
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}

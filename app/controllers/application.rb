@@ -110,7 +110,8 @@ class ApplicationController < ActionController::Base
     
     # allow the chance to make a new one if you GET the URL, but not for Style
     if request.get? and obj.nil? and obj_type != 'styles'
-      flash[:info] = "The #{obj_name} was not found, would you like to make it?"
+      flash[:notice] =
+        "The #{obj_name} was not found, would you like to make it?"
       redirect_to :action => 'new', :new_title => tfu
       return
     elsif obj.nil?
