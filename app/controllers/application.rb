@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   append_before_filter :authorized?
   append_before_filter :set_current_people_id
   
-  helper_method :logged_in?
+  helper_method :logged_in?, :has_permission_for_action?
   
   cattr_accessor :current_people_id
   
@@ -164,17 +164,19 @@ class ApplicationController < ActionController::Base
   # to a particular aspect of the system. Also finds the Guest user and checks
   # for the Guest Role.
   #
-  def has_permission_for_action?
+  def has_permission_for_action?(aname = nil, cname = nil)
     role = nil
+    aname ||= params[:action]
+    cname ||= params[:controller]
+    aname = aname.to_s
+    cname = cname.to_s
     if logged_in?
-      role = People.find_by_title(session[:people_title]).role rescue nil
+      role = People.find(session[:people_id]).role rescue nil
     end
-    logger.debug("role is #{role.inspect}")
     role ||= Role.base_role
     while role
       return true if role.permissions.detect do |p|
-        p.controller.to_s == params[:controller].to_s and
-          p.action.to_s == params[:action].to_s
+        p.controller.to_s == cname and p.action.to_s == aname
       end
       role = role.parent
     end
