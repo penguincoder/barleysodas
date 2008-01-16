@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   append_before_filter :authorized?
   append_before_filter :set_current_people_id
   
-  helper_method :logged_in?, :has_permission_for_action?
+  helper_method :logged_in?, :has_permission_for_action?, :per_page
   
   cattr_accessor :current_people_id
   
@@ -71,6 +71,14 @@ class ApplicationController < ActionController::Base
   #
   def allow_page_discussions
     @page.allow_discussions = true
+  end
+  
+  ##
+  # This will eventually figure out what the People has configured for a per
+  # page limit of objects.
+  #
+  def per_page
+    50
   end
   
   protected

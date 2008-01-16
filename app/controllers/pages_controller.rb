@@ -13,7 +13,7 @@ class PagesController < ApplicationController
     
     cond_ary = [ 'owner_id IS NULL' ]
     cond_ary << "title <> 'HomePage'"
-    @pages, @wiki_pages = paginate :page, :per_page => 25,
+    @pages, @wiki_pages = paginate :page, :per_page => per_page,
       :order => 'title ASC', :conditions => [ cond_ary.join(' AND ') ]
     
     @tags = Page.tags(:limit => 25, :order => "name ASC")

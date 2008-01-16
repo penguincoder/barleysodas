@@ -6,8 +6,8 @@ class PeoplesController < ApplicationController
   # GET /peoples.xml
   def index
     @secondary_title = 'Browsing all Peoples'
-    @pages, @peoples = paginate :people, :per_page => 25, :order => 'title ASC',
-      :singular_name => 'people'
+    @pages, @peoples = paginate :people, :per_page => per_page,
+      :order => 'title ASC', :singular_name => 'people'
     @tags = Page.tags(:limit => 25, :order => "name DESC",
       :owner_type => 'People')
     respond_to do |format|

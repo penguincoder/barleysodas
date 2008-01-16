@@ -8,7 +8,7 @@ class DiscussionsController < ApplicationController
     @content_title = 'Discussion Topics'
     @secondary_title = 'All discussion topics'
     @pages, @wiki_pages = paginate :pages, :order => 'title ASC',
-      :conditions => [ 'allow_discussions = ?', true ], :per_page => 25,
+      :conditions => [ 'allow_discussions = ?', true ], :per_page => per_page,
       :include => [ 'discussions' ]
     respond_to do |format|
       format.html # index.rhtml
@@ -21,7 +21,7 @@ class DiscussionsController < ApplicationController
     @page = Page.find(params[:id], :include => [ 'discussions' ])
     @secondary_title = @page.title
     @pages, @discussions = paginate :discussion, :order => 'created_at ASC',
-      :conditions => [ 'page_id = ?', @page.id ], :per_page => 25
+      :conditions => [ 'page_id = ?', @page.id ], :per_page => per_page
     respond_to do |format|
       format.html # show.rhtml
       format.xml  { render :xml => @discussions.to_xml }

@@ -7,7 +7,7 @@ class BeersController < ApplicationController
   def index
     @content_title = 'The Beers'
     @secondary_title = 'Browsing all beers'
-    @pages, @beers = paginate :beers, :include => 'page', :per_page => 50,
+    @pages, @beers = paginate :beers, :include => 'page', :per_page => per_page,
       :order => 'beers.title ASC'
     @tags = Page.tags(:limit => 25, :order => "name DESC",
       :owner_type => 'Beer')

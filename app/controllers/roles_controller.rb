@@ -5,7 +5,8 @@ class RolesController < ApplicationController
   # GET /roles.xml
   def index
     @secondary_title = 'Role Administration'
-    @pages, @roles = paginate :roles, :order => 'name ASC', :per_page => 25
+    @pages, @roles = paginate :roles, :order => 'name ASC',
+      :per_page => per_page
     respond_to do |format|
       format.html # index.rhtml
       format.xml  { render :xml => @roles.to_xml }

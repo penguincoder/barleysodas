@@ -8,7 +8,7 @@ class BreweriesController < ApplicationController
     @content_title = 'The Breweries'
     @secondary_title = 'Browsing all breweries'
     @pages, @breweries = paginate :breweries, :include => 'page',
-      :order => 'breweries.title ASC', :per_page => 50
+      :order => 'breweries.title ASC', :per_page => per_page
     
     @tags = Page.tags(:limit => 25, :order => "name DESC",
       :owner_type => 'Beer')
