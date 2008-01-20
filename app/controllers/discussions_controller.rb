@@ -68,6 +68,7 @@ class DiscussionsController < ApplicationController
   def allow_discussions
     @page = Page.find(params[:id])
     status = 500
-    
+    status = 200 if @page.update_attribute(:allow_discussions, true)
+    render :nothing => true, :status => status
   end
 end
