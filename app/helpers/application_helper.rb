@@ -20,9 +20,7 @@ module ApplicationHelper
   #
   def secondary_title
     return h(@secondary_title) if @secondary_title
-    params[:action].to_s.capitalize.gsub(/_/) do |x|
-      $1.capitalize
-    end
+    ''
   end
   
   ##
