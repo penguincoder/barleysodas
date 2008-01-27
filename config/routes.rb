@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :beers, :breweries, :pages, :discussions, :peoples, :roles,
-    :sessions, :styles
+    :sessions, :styles, :galleries
 
   map.connect ':controller/:action/:id.:format'
   map.connect ':controller/:action/:id'

@@ -221,16 +221,16 @@
 
 #content li.discussion   .author abbr { color: #999; }
 
-#content li.discussion .author .gravatar { 
+#content li.discussion .author .gravatar {
   margin: 0 0 0.5em 0.5em;
-  float: right; 
+  float: right;
 }
 
 #content li.discussion .author div {
   margin: 0 0 0.5em 0.5em;
   width: 60px; height: 60px;
   background: url(/images/gravatar.gif) no-repeat left top;
-  float: right; 
+  float: right;
 }
 
 #content form.discussions {
@@ -254,6 +254,22 @@
 #content form.discussions textarea { 
   width: 90%; height: 150px;
   padding: 3px;
+}
+
+/* People uploaded Image styling */
+#content .people_image {
+  border: 1px solid #DDD;
+  background-color: #F2F2F2;
+}
+
+#content .people_image .author {
+  margin: 0 0 0.5em 0.5em;
+  width: 60px; height: 60px;
+  float: right;
+}
+
+#content .people_image .meta {
+  text-align: center;
 }
 
 /*--------------------------------------------------------------
