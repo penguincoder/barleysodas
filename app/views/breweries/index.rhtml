@@ -1,9 +1,5 @@
 <ul>
-<% unless @breweries.empty? -%>
 <% for brewery in @breweries %><li><%= show_brewery_link(brewery) -%></li><% end -%>
-<% else -%>
-<li>No breweries, yet.</li>
-<% end -%>
 </ul>
 
 <%= render :partial => 'shared/pagination_links' %>

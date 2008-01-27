@@ -9,6 +9,9 @@ class BeersController < ApplicationController
     @secondary_title = 'Browsing all beers'
     @pages, @beers = paginate :beers, :include => 'page', :per_page => per_page,
       :order => 'beers.title ASC'
+    if @beers.empty?
+      flash.now[:notice] = 'There are no beers yet.'
+    end
     @tags = Page.tags(:limit => 25, :order => "name DESC",
       :owner_type => 'Beer')
     respond_to do |format|

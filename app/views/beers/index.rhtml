@@ -1,9 +1,5 @@
 <ul>
-<% unless @beers.empty? -%>
-<% for beer in @beers %><li><%= link_to beer.title, beer_path(beer.page.title_for_url) %></li><% end -%>
-<% else -%>
-<li>No beers, yet</li>
-<% end -%>
+<% for beer in @beers %><li><%= link_to beer.title, beer_path(beer.page.title_for_url) %></li><% end %>
 </ul>
 
 <%= render :partial => 'shared/pagination_links' %>

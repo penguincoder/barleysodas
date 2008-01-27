@@ -1,9 +1,5 @@
 <ul>
-<% unless @peoples.empty? -%>
 <% for people in @peoples -%><li><%= show_people_link(people) -%></li><% end %>
-<% else -%>
-<li>No people, yet!</li>
-<% end -%>
 </ul>
 
 <%= render :partial => 'shared/pagination_links' %>
