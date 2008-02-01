@@ -3,7 +3,7 @@
   <% if @tag_images.empty? -%>
     None.
   <% elsif (read_only ||= false) -%>
-    <%= @tag_images.collect { |t| "<span onmouseover=\"show_tag_at(#{t.x}, #{t.y})\" onmouseout=\"hide_tag_box()\">#{t.tagged.title} (<em>#{t.tagged_type}</em>)</span>" } %>
+    <%= @tag_images.collect { |t| "<span onmouseover=\"show_tag_at(#{t.x}, #{t.y})\" onmouseout=\"hide_tag_box()\">#{t.tagged.title} (<em>#{t.tagged_type}</em>)</span>" }.join(', ') %>
   <% else -%>
     <%= @tag_images.collect { |t| "<span onmouseover=\"show_tag_at(#{t.x}, #{t.y})\" onmouseout=\"hide_tag_box()\">#{t.tagged.title} (<em>#{t.tagged_type}</em> | #{link_to_remote('Remove', :url => tag_image_path(t), :update => 'tag_images', :method => :delete)})</span>" }.join(', ') -%>
   <% end -%>
