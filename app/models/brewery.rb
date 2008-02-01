@@ -4,6 +4,7 @@
 class Brewery < ActiveRecord::Base
   has_many :beers
   has_one_tuxwiki_page :owner_class => 'Brewery'
+  has_many_tagged_images
   
   ##
   # Returns a list of attributes to add into the Page display.
