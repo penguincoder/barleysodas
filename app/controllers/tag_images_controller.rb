@@ -74,8 +74,7 @@ class TagImagesController < ApplicationController
       @current_page = params[:page].to_i
       @current_page = 1 if @current_page == 0
       image_count = TagImage.count(conditions)
-      @page_count = (image_count.to_f / per_page.to_f + 0.5).to_i
-      @page_count = 1 if @page_count == 0 and image_count >= 0
+      @page_count = (image_count.to_f / images_per_page.to_f).round
       @tagged_images = TagImage.find :all, :limit => images_per_page,
         :conditions => conditions, :order => 'created_at ASC',
         :offset => ((@current_page - 1) * images_per_page),
