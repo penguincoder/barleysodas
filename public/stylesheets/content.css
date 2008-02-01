@@ -256,7 +256,7 @@
 }
 
 /* People uploaded Image styling */
-#content .people_image {
+#content .people_image, #content .friend_box {
   border: 1px solid #DDD;
   background-color: #F2F2F2;
   float: left;

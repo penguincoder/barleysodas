@@ -10,10 +10,20 @@ class People < ActiveRecord::Base
   has_many :images, :dependent => :destroy
   has_many_tagged_images
   validates_uniqueness_of :title
+  has_many :friends, :foreign_key => :source_id, :dependent => :destroy
+  has_many :actual_friends, :through => :friends, :source => :destination
   
   make_authenticatable
   validates_length_of :password, :minimum => 8, :if => :password_required?,
     :message => 'must be at least 8 characters in length'
+  
+  ##
+  # Used to quickly determine if the particular id of another Person is a
+  # Friend of this instance.
+  #
+  def friend_of?(people_id)
+    Friend.count([ 'source_id = ? AND destination_id = ?', people_id, id ]) > 0
+  end
   
   ##
   # Finds me.
