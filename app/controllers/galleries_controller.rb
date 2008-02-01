@@ -73,6 +73,7 @@ class GalleriesController < ApplicationController
   protected
   
   def fetch_image
-    @image = Image.find(params[:id])
+    @image = Image.find(params[:id], :include => [ 'tag_images' ])
+    @tag_images = @image.tag_images
   end
 end

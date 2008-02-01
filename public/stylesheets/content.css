@@ -188,7 +188,6 @@
   color: #fff;
 }
 
-
 /* Comments and Trackbacks */
 #content ol.discussions, li.discussion {
   list-style-type: none;
@@ -260,18 +259,10 @@
 #content .people_image {
   border: 1px solid #DDD;
   background-color: #F2F2F2;
-}
-
-#content .people_image .author {
-  margin: 0 2.5em 0.5em 0.5em;
-}
-
-#content .people_image .meta {
+  float: left;
+  margin: 15px;
+  padding: 5px;
   text-align: center;
-}
-
-.people_image img {
-  margin: 10px;
 }
 
 /*--------------------------------------------------------------

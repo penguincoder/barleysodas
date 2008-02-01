@@ -1,0 +1,77 @@
+<% content_for :stylesheet do -%>
+#image_block {
+  z-index: 0;
+  border: 1px solid black;
+  padding: 0px;
+  width: <%= @image.screen_width -%>px;
+  height: <%= @image.screen_height -%>px;
+  background-image: url('/images/<%= @image.filename_for_version -%>');
+  background-repeat: no-repeat;
+}
+#image_block_container {
+  margin: 10px <%= (605 - @image.screen_width) / 2 -%>px 20px <%= (605 - @image.screen_width) / 2 -%>px;
+}
+#image_tag_box {
+  position: relative;
+  z-index: 2;
+  width: 100px;
+  height: 100px;
+  border: 5px solid #db3333;
+  left: 0;
+  top: 0;
+  display: none;
+}
+<% end -%>
+
+<% content_for :script do -%>
+function show_tag_at(xcoord, ycoord)
+{
+  $('image_tag_box').style.top = (ycoord - 50) + 'px';
+  $('image_tag_box').style.left = (xcoord - 50) + 'px';
+  $('image_tag_box').style.display = 'block';
+}
+
+function hide_tag_box()
+{
+  $('image_tag_box').style.display = 'none';
+}
+
+function set_coordinates(event)
+{
+  xcoord = (event.offsetX ? event.offsetX : (event.pageX - $('image_block').offsetLeft));
+  ycoord = (event.offsetY ? event.offsetY : (event.pageY - $('image_block').offsetTop));
+  show_tag_at(xcoord, ycoord);
+  lightboxes['taggedContentDialog'].open();
+}
+
+function set_taggable_item(id, title, type)
+{
+  $('tag_image_tagged_id').value = id;
+  $('tag_image_title').innerHTML = title;
+  $('tag_image_tagged_type').value = type;
+}
+
+if(!window.after_opens)
+  after_opens = {};
+if(!window.before_closes)
+  before_closes = {};
+after_opens['taggedContentDialog'] = function(){
+  $('tag_image_x').value = xcoord;
+  $('tag_image_y').value = ycoord;
+  $('tag_image_image_id').value = <%= params[:id] -%>;
+  $('search').focus();
+}
+before_closes['taggedContentDialog'] = function(){
+  hide_tag_box();
+}
+<% end -%>
+
+<div id="image_block_container" class="centered">
+  <div id="image_block" onclick='set_coordinates(event);'>
+    <div id="image_tag_box" style="display: none;"></div>
+  </div>
+  <br />
+  <div id="tag_images">
+    <%= render :partial => 'tag_images/tag_images', :locals => { :read_only => (read_only ||= false) } %>
+  </div>
+</div>

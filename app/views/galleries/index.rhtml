@@ -1,4 +1,6 @@
-<%= render :partial => 'image', :collection => @images, :locals => { :version => :thumbnail } %>
+<% for image in @images do -%>
+<div class="people_image"><%= link_to(image_tag(image.filename_for_version(:thumbnail), :alt => image.original), gallery_url(image)) -%><br /><%= h(image.original) -%></div>
+<% end -%>
 
 <%= render :partial => 'shared/pagination_links' %>
 
