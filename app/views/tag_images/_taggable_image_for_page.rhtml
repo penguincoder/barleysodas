@@ -16,10 +16,15 @@
   z-index: 2;
   width: 100px;
   height: 100px;
-  border: 5px solid #db3333;
+  border: 7px solid #6f9bdc;
   left: 0;
   top: 0;
   display: none;
+}
+#inner_image_tag_box {
+  border: 2px solid black;
+  width: 96px;
+  height: 96px;
 }
 <% end -%>
 
@@ -68,7 +73,7 @@ before_closes['taggedContentDialog'] = function(){
 
 <div id="image_block_container" class="centered">
   <div id="image_block" onclick='set_coordinates(event);'>
-    <div id="image_tag_box" style="display: none;"></div>
+    <div id="image_tag_box" style="display: none;"><div id="inner_image_tag_box"></div></div>
   </div>
   <br />
   <div id="tag_images">
