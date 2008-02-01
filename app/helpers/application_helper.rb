@@ -133,7 +133,7 @@ module ApplicationHelper
     else
       link_to_remote image_tag(image_name), :update => 'browser_box',
         :url => { :controller => 'tag_images', :action => 'tagged_images',
-        :id => :tagged_id, :tagged_class => tagged_class }
+        :id => tagged_id, :tagged_type => tagged_class, :page => page_number }
     end
   end
   
