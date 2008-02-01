@@ -1,4 +1,4 @@
-<h3 class="author">Uploaded by <%= link_to(@image.people.title, galleries_url(:id => @image.people_id)) -%></h3>
+<h3 class="author">Uploaded by <%= @image.people.title -%></h3>
 
 <%= render :partial => 'tag_images/taggable_image_for_page', :locals => { :read_only => true } %>
 
