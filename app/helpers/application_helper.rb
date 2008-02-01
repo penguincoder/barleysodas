@@ -113,6 +113,15 @@ module ApplicationHelper
   end
   
   ##
+  # Renders everything you need to display the TagImage browser.
+  #
+  def tagged_image_browser(obj)
+    javascript_include_tag('control.modal.js') +
+      render(:partial => 'shared/tagged_image_browser',
+        :locals => { :obj => obj })
+  end
+  
+  ##
   # Pagination link image browser thingey for the tagged image lightbox.
   #
   def image_browser_navigation_link(image_name, page_number, total_pages,

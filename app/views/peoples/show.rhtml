@@ -1,7 +1,10 @@
+<%= tagged_image_browser(@people) %>
+
 <%= render :partial => 'pages/page' %>
 
 <% content_for :sidebar do -%>
   <%= new_people_link -%><br />
   <%= edit_people_link(@people) %><br />
   <%= link_to 'Destroy', people_path(@people.page.title_for_url), :confirm => 'Are you sure?', :method => :delete %><br />
+  <% unless @people.tagged_images.empty? -%><%= tagged_image_browser_link -%><br /><% end -%>
 <% end -%>
