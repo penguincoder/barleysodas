@@ -6,4 +6,5 @@
   <%= link_to "Download original", :action => 'download_original', :id => @image.id -%><br />
   <%= link_to 'Destroy', gallery_path(@image), :confirm => 'Are you sure?', :method => :delete %><br />
   <%= link_to 'Tag Image', :controller => :tag_images, :action => :show, :id => @image.id -%><br />
+  <%= new_image_link -%><br />
 <% end -%>

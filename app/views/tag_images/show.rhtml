@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'control.modal.js' %>
+
 <% content_for :stylesheet do -%>
 #image_block {
   z-index: 0;
@@ -107,4 +109,5 @@ before_closes['taggedContentDialog'] = function(){
 
 <% content_for :sidebar do -%>
   <%= link_to 'Image Details', gallery_path(@image) -%><br />
+  <%= new_image_link -%><br />
 <% end -%>
