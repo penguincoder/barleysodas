@@ -1,0 +1,11 @@
+<div class="centered">
+<% @tagged_images.each do |tag_image| -%>
+  <%= link_to(image_tag(tag_image.image.filename_for_version(:thumbnail)), gallery_path(tag_image.image), :popup => true) %>
+<% end -%>
+</div>
+
+<br />
+
+<div id="browser_controls" class="centered">
+  <%= image_browser_navigation_link('go-first.png', 1, @page_count, @tagged_type, params[:id]) -%> <%= image_browser_navigation_link('go-previous.png', @current_page - 1, @page_count, @tagged_type, params[:id]) -%> <%= @current_page -%> / <%= @page_count -%> <%= image_browser_navigation_link('go-next.png', @current_page + 1, @page_count, @tagged_type, params[:id]) -%> <%= image_browser_navigation_link('go-last.png', @page_count, @page_count, @tagged_type, params[:id]) -%>
+</div>

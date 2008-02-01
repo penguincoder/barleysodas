@@ -1,0 +1,30 @@
+<div id="<%= window_id -%>_dialog">
+  <div class="dialogBox">
+    <div class="dialogHeader"><%= title -%></div>
+    <br />
+    <div class="dialogContent"><%= body -%></div>
+  </div>
+</div>
+<%= link_to(title, "##{window_id}_dialog", { :class => "#{modal ? '' : 'non'}modal_controls", :onclick => "return false;", :id => "#{window_id}_id_key", :style => 'display: none;' }) %>
+<% content_for :script do -%>
+  addLoadEvent(function(){
+    if(!window.lightboxes)
+      lightboxes = {};
+    if(!window.after_opens)
+      after_opens = {};
+    if(!window.before_closes)
+      before_closes = {}
+    var link = $("<%= window_id -%>_id_key");
+    var key = '<%= window_id -%>';
+    var ao = after_opens[key];
+    var bc = before_closes[key];
+    if(ao == undefined)
+      ao = function(){};
+    if(bc == undefined)
+      bc = function(){};
+    lightboxes[key] = new Control.Modal(link, {
+      afterOpen: ao, beforeClose: bc,
+      overlayCloseOnClick: <%= modal ? 'false' : 'true' -%>
+    });
+  });
+<% end -%>

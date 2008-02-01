@@ -1,0 +1,9 @@
+<%= render :partial => 'image', :locals => { :image => @image } %>
+<br />
+
+<% content_for :sidebar do -%>
+  <%= link_to "#{@image.people.title}'s images (#{@image.people.images.size})", galleries_path(:id => @image.people_id) -%><br />
+  <%= link_to "Download original", :action => 'download_original', :id => @image.id -%><br />
+  <%= link_to 'Destroy', gallery_path(@image), :confirm => 'Are you sure?', :method => :delete %><br />
+  <%= link_to 'Tag Image', :controller => :tag_images, :action => :show, :id => @image.id -%><br />
+<% end -%>

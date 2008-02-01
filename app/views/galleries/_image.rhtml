@@ -1,0 +1,6 @@
+<br />
+<% version ||= :screen -%>
+<div class="people_image" id="image_<%= image.id -%>">
+  <%= link_to_unless_current(image_tag(image.filename_for_version(version), :alt => image.original), gallery_url(image)) %>
+  <p class="author">Uploaded by <%= link_to(image.people.title, galleries_url(:id => image.people_id)) -%></p>
+</div>

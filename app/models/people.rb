@@ -7,6 +7,8 @@ class People < ActiveRecord::Base
   attr_protected :role_id
   has_many :created_pages, :class_name => 'Page', :foreign_key => 'created_by'
   has_many :updated_pages, :class_name => 'Page', :foreign_key => 'updated_by'
+  has_many :images, :dependent => :destroy
+  has_many_tagged_images
   validates_uniqueness_of :title
   
   make_authenticatable

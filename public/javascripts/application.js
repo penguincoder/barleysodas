@@ -1,3 +1,15 @@
+function addLoadEvent(func) {
+  var oldonload = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function() {
+      oldonload();
+      func();
+    }
+  }
+}
+
 function set_all_checkboxes(form_name, field_name, check_value)
 {
   if(!document.forms[form_name])

@@ -6,6 +6,7 @@ class Beer < ActiveRecord::Base
   has_one_tuxwiki_page :owner_class => 'Beer'
   belongs_to :style
   validates_presence_of :style_id
+  has_many_tagged_images
   
   ##
   # Returns a list of attributes for the Page partial.

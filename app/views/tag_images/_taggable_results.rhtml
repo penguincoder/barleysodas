@@ -1,0 +1,10 @@
+<% @results.keys.each do |ctype| -%>
+<% next if @results[ctype].empty? -%>
+<h3><%= ctype.pluralize -%></h3>
+<p>
+  <%= @results[ctype].collect { |r| link_to_function(r.title, "set_taggable_item(#{r.id}, '#{r.title}', '#{ctype}');") }.join(', ') %>
+</p>
+<% end -%>
+<% unless @results.detect { |key, val| !val.empty? } -%>
+  <small>No results found...</small>
+<% end -%>

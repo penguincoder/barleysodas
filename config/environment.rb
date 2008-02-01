@@ -9,3 +9,4 @@ end
 
 require 'redcloth'
 require 'has_one_page'
+require 'has_many_tagged_images'

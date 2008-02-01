@@ -1,0 +1,20 @@
+<%= error_messages_for :image %>
+
+<% form_for(:images, :url => galleries_path, :html => { :multipart => true, :onsubmit => "$('spinner').style.display = 'inline';" }) do |f| %>
+  <fieldset>
+    <h2>Upload an image</h2>
+    <p>
+      <label>
+        File:
+        <%= file_field 'image', 'file' %>
+      </label>
+    </p>
+  </fieldset>
+  <p>
+    <%= submit_tag "Create" %> <%= image_tag '/images/spinner.gif', :id => 'spinner', :style => 'display:none' %>
+  </p>
+<% end %>
+
+<% content_for :sidebar do -%>
+  <%= new_image_link -%><br />
+<% end -%>

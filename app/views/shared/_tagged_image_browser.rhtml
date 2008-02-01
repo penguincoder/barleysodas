@@ -1,0 +1,46 @@
+<% content_for :stylesheet do -%>
+#browser_box {
+}
+
+#browser_box img {
+  vertical-align: middle;
+}
+
+#browser_controls {
+  padding: 3px 10px 3px 10px;
+  text-align: center;
+}
+<% end -%>
+
+<% content_for :script do -%>
+if(!window.after_opens)
+  after_opens = {};
+if(!window.before_closes)
+  before_closes = {}
+
+after_opens['tagged_image_browser'] = function(){
+  $('browser_box').hide();
+  new Ajax.Updater('browser_box',
+    '<%= url_for(:controller => :tag_images, :action => :tagged_images, :id => ((obj ||= nil).nil? ? nil : obj.id), :tagged_type => obj.class) -%>',
+    {
+      onFailure: function() {
+        lightboxes['tagged_image_browser'].close();
+      },
+      onSuccess: function() {
+        $('browser_spinner').hide();
+        new Effect.Appear('browser_box', { duration: 1.5 });
+      }
+    }
+  );
+}
+
+before_closes['tagged_image_browser'] = function(){
+  $('browser_box').hide();
+  $('browser_spinner').show();
+}
+<% end -%>
+
+<% lightbox :title => 'Tagged Images', :window_id => 'tagged_image_browser' do -%>
+  <div id="browser_spinner"><div class="centered"><%= image_tag('spinner.gif') -%></div></div>
+  <div id="browser_box"></div>
+<% end -%>

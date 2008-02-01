@@ -1,0 +1,7 @@
+<%= render :partial => 'image', :collection => @images, :locals => { :version => :thumbnail } %>
+
+<%= render :partial => 'shared/pagination_links' %>
+
+<% content_for :sidebar do -%>
+  <%= new_image_link -%><br />
+<% end -%>

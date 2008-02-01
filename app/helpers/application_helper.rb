@@ -91,4 +91,48 @@ module ApplicationHelper
       res
     end
   end
+  
+  ##
+  # Captures a block output and renders it in a partial as <tt>body</tt>
+  #
+  def block_to_partial(partial_name, options = {}, &block)
+    options.merge!(:body => capture(&block))
+    concat(render(:partial => partial_name, :locals => options), block.binding)
+  end
+  
+  ##
+  # Helper to build a prototype dialog.
+  #
+  def lightbox(options = {}, &block)
+    options = {
+      :title => 'DialogTitle',
+      :window_id => 'DialogId',
+      :modal => false
+    }.merge(options)
+    block_to_partial('shared/lightbox', options, &block)
+  end
+  
+  ##
+  # Pagination link image browser thingey for the tagged image lightbox.
+  #
+  def image_browser_navigation_link(image_name, page_number, total_pages,
+                                    tagged_class, tagged_id)
+    if page_number == 0 or
+       (page_number == 1 and total_pages == 1) or
+       (page_number > total_pages)
+      image_tag(image_name)
+    else
+      link_to_remote image_tag(image_name), :update => 'browser_box',
+        :url => { :controller => 'tag_images', :action => 'tagged_images',
+        :id => :tagged_id, :tagged_class => tagged_class }
+    end
+  end
+  
+  ##
+  # Link to open the dialog box for the tagged image browser.
+  #
+  def tagged_image_browser_link
+    link_to_function 'Tagged Images',
+      "lightboxes['tagged_image_browser'].open()"
+  end
 end

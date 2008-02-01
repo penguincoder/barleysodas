@@ -1,7 +1,10 @@
+<%= render :partial => 'shared/tagged_image_browser', :locals => { :obj => @beer } %>
+
 <%= render :partial => 'pages/page' %>
 
 <% content_for :sidebar do -%>
   <%= new_beer_link -%><br />
   <%= edit_beer_link(@beer) -%><br />
   <%= link_to 'Destroy', beer_path(@beer.page.title_for_url), :confirm => 'Are you sure?', :method => :delete %><br />
+  <% unless @beer.tagged_images.empty? -%><%= tagged_image_browser_link -%><br /><% end -%>
 <% end -%>
