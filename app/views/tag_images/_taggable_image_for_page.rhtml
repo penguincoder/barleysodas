@@ -72,11 +72,11 @@ before_closes['taggedContentDialog'] = function(){
 <% end -%>
 
 <div id="image_block_container" class="centered">
-  <div id="image_block" onclick='set_coordinates(event);'>
+  <div id="image_block"<% unless((read_only ||= false)) -%> onclick='set_coordinates(event);'<% end -%>>
     <div id="image_tag_box" style="display: none;"><div id="inner_image_tag_box"></div></div>
   </div>
   <br />
   <div id="tag_images">
-    <%= render :partial => 'tag_images/tag_images', :locals => { :read_only => (read_only ||= false) } %>
+    <%= render :partial => 'tag_images/tag_images', :locals => { :read_only => read_only } %>
   </div>
 </div>
