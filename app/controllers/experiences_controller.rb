@@ -9,20 +9,26 @@ class ExperiencesController < ApplicationController
   # GET /experiences/1
   # GET /experiences/1.xml
   def show
+    @content_title = 'Experience Points'
     @people = People.find_by_title(Page.title_from_url(params[:id]))
-    cond_ary = [ 'experiences.people_id = :people_id' ]
-    cond_var = { :people_id => @people.id }
-    conditions = [ cond_ary.join(' AND '), cond_var ]
-    @total_count = Experience.count(conditions)
-    @pages, @experiences = paginate :experiences,
-      :include => [ 'beer' ], :order => [ 'beers.title ASC' ],
-      :per_page => per_page, :conditions => conditions
-    brewery_ids = @experiences.collect { |e| e.beer.brewery_id }
-    @breweries = Brewery.find(brewery_ids, :order => 'title ASC')
-    flash.now[:notice] = 'No experience yet.' if @experiences.empty?
     respond_to do |format|
-      format.html # index.rhtml
-      format.xml  { render :xml => @experiences.to_xml }
+      format.html do
+        cond_ary = [ 'experiences.people_id = :people_id' ]
+        cond_var = { :people_id => @people.id }
+        conditions = [ cond_ary.join(' AND '), cond_var ]
+        @total_count = Experience.count("people_id = #{@people.id}")
+        @pages, @experiences = paginate :experiences,
+          :include => [ 'beer' ], :order => [ 'beers.title ASC' ],
+          :per_page => per_page, :conditions => conditions
+        brewery_ids = @experiences.collect { |e| e.beer.brewery_id }
+        @breweries = Brewery.find(brewery_ids, :order => 'title ASC')
+        flash.now[:notice] = 'No experience yet.' if @experiences.empty?
+      end
+      format.rss do
+        @experiences = @people.experiences.find :all, :limit => per_page,
+          :order => 'created_at DESC'
+        render :partial => 'experiences'
+      end
     end
   end
   
