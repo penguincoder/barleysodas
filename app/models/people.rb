@@ -21,6 +21,8 @@ class People < ActiveRecord::Base
   validates_length_of :password, :minimum => 8, :if => :password_required?,
     :message => 'must be at least 8 characters in length'
   
+  before_create :set_user_role
+  
   ##
   # Used to quickly determine if the particular id of another Person is a
   # Friend of this instance.
@@ -38,6 +40,13 @@ class People < ActiveRecord::Base
   end
   
   protected
+  
+  ##
+  # Forces the People Role to be a tame default unless otherwise overridden.
+  #
+  def set_user_role
+    self.role = Role.normal_role if self.role.nil?
+  end
   
   ##
   # Determines if the password is needed.
