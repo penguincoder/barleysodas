@@ -26,7 +26,7 @@ class TagImagesController < ApplicationController
       @tag_images = @image.tag_images
       render :partial => 'tag_images'
     else
-      render :partial => 'tag_image_errors', :status => 500
+      render :line => "<%= error_messages_for 'tag_image' %>", :status => 500
     end
   end
   
