@@ -1,0 +1,19 @@
+xml.instruct! :xml, :version=>"1.0" 
+xml.rss(:version=>"2.0"){
+  xml.channel{
+    xml.title("BarleySodas Newest People")
+    xml.link(peoples_url)
+    xml.description("The newest people added into BarleySodas.")
+    xml.lastBuildDate((@peoples.first.created_at.strftime("%a, %d %b %Y %H:%M:%S %z") rescue nil))
+    xml.language('en-us')
+      for people in @peoples
+        xml.item do
+          xml.title(people.title)
+          xml.description(people.title)
+          xml.pubDate(people.created_at.strftime("%a, %d %b %Y %H:%M:%S %z"))
+          xml.link(people_url(people.page.title_for_url))
+          xml.guid(people_url(people.page.title_for_url))
+        end
+      end
+  }
+}

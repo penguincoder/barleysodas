@@ -1,0 +1,20 @@
+xml.instruct! :xml, :version=>"1.0" 
+xml.rss(:version=>"2.0"){
+  xml.channel{
+    xml.title("BarleySodas Newest Breweries")
+    xml.link(breweries_url)
+    xml.description("The newest breweries added into BarleySodas.")
+    xml.lastBuildDate((@breweries.first.created_at.strftime("%a, %d %b %Y %H:%M:%S %z") rescue nil))
+    xml.language('en-us')
+      for brewery in @breweries
+        xml.item do
+          xml.title(brewery.title)
+          xml.description(brewery.homepage)
+          xml.author(brewery.page.created_by.title)
+          xml.pubDate(brewery.created_at.strftime("%a, %d %b %Y %H:%M:%S %z"))
+          xml.link(brewery_url(brewery.page.title_for_url))
+          xml.guid(brewery_url(brewery.page.title_for_url))
+        end
+      end
+  }
+}

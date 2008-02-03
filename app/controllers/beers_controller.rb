@@ -5,16 +5,21 @@ class BeersController < ApplicationController
   # GET /beers
   # GET /beers.xml
   def index
-    @content_title = 'The Beers'
-    @secondary_title = 'Browsing all beers'
-    @pages, @beers = paginate :beers, :include => 'page', :per_page => per_page,
-      :order => 'beers.title ASC'
-    flash.now[:notice] = 'There are no beers yet.' if @beers.empty?
-    @tags = Page.tags(:limit => 25, :order => "name DESC",
-      :owner_type => 'Beer')
     respond_to do |format|
-      format.html # index.rhtml
-      format.xml  { render :xml => @beers.to_xml }
+      format.html do
+        @content_title = 'The Beers'
+        @secondary_title = 'Browsing all beers'
+        @pages, @beers = paginate :beers, :include => 'page', :per_page => per_page,
+          :order => 'beers.title ASC'
+        flash.now[:notice] = 'There are no beers yet.' if @beers.empty?
+        @tags = Page.tags(:limit => 25, :order => "name DESC",
+          :owner_type => 'Beer')
+      end
+      format.rss do
+        @beers = Beer.find :all, :order => 'beers.created_at DESC',
+          :limit => per_page
+        render :partial => 'beers'
+      end
     end
   end
   

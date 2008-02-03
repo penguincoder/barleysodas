@@ -11,7 +11,7 @@ class DiscussionsController < ApplicationController
       :conditions => [ 'allow_discussions = ?', true ], :per_page => per_page,
       :include => [ 'discussions' ]
     respond_to do |format|
-      format.html # index.rhtml
+      format.html
     end
   end
   
@@ -23,8 +23,8 @@ class DiscussionsController < ApplicationController
     @pages, @discussions = paginate :discussion, :order => 'created_at ASC',
       :conditions => [ 'page_id = ?', @page.id ], :per_page => per_page
     respond_to do |format|
-      format.html # show.rhtml
-      format.xml  { render :xml => @discussions.to_xml }
+      format.html
+      format.rss  { render :partial => 'discussions' }
     end
   end
   

@@ -5,21 +5,24 @@ class PagesController < ApplicationController
   # GET /pages
   # GET /pages.xml
   def index
-    @page = Page.find_by_title_and_owner_type 'HomePage', nil
-    @page ||= Page.create :title => 'HomePage',
-      :redcloth => 'Welcome to BarleySodas!'
-    @content_title = 'The Beer Wiki'
-    @secondary_title = 'Browsing all pages'
-    
-    cond_ary = [ 'owner_id IS NULL' ]
-    cond_ary << "title <> 'HomePage'"
-    @pages, @wiki_pages = paginate :page, :per_page => per_page,
-      :order => 'title ASC', :conditions => [ cond_ary.join(' AND ') ]
-    
-    @tags = Page.tags(:limit => 25, :order => "name ASC")
-    
     respond_to do |format|
-      format.html # index.rhtml
+      format.html do
+        @page = Page.find_by_title_and_owner_type 'HomePage', nil
+        @page ||= Page.create :title => 'HomePage',
+          :redcloth => 'Welcome to BarleySodas!'
+        @content_title = 'The Beer Wiki'
+        @secondary_title = 'Browsing all pages'
+        cond_ary = [ 'owner_id IS NULL' ]
+        cond_ary << "title <> 'HomePage'"
+        @pages, @wiki_pages = paginate :page, :per_page => per_page,
+          :order => 'title ASC', :conditions => [ cond_ary.join(' AND ') ]
+        @tags = Page.tags(:limit => 25, :order => "name ASC")
+      end
+      format.rss do
+        @pages = Page.find :all, :order => 'updated_at DESC',
+          :limit => per_page, :conditions => [ 'owner_type IS NULL' ]
+        render :partial => 'pages'
+      end
     end
   end
   

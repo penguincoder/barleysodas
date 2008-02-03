@@ -8,6 +8,7 @@ class CreateBreweries < ActiveRecord::Migration
       t.column :state, :string
       t.column :postal_code, :string
       t.column :country, :string
+      t.column :homepage, :string
       t.column :created_at, :timestamp
     end
     add_column :beers, :brewery_id, :integer

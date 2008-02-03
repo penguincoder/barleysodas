@@ -26,7 +26,7 @@ class ExperiencesController < ApplicationController
       end
       format.rss do
         @experiences = @people.experiences.find :all, :limit => per_page,
-          :order => 'created_at DESC'
+          :order => 'experiences.created_at DESC'
         render :partial => 'experiences'
       end
     end

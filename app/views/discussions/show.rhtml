@@ -13,3 +13,7 @@
 <% content_for 'sidebar' do -%>
   <%= page_or_parent_link(@page) -%><br />
 <% end -%>
+
+<% content_for :auto_discoveries do -%>
+  <%= auto_discovery_link_tag :rss, { :format => :rss } %>
+<% end -%>

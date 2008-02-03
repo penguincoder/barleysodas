@@ -8,3 +8,7 @@
   <%= link_to "New Beer", new_beer_path, { :title => 'Create a new beer' } -%><br />
   <%= render :partial => 'shared/tag_cloud' %>
 <% end -%>
+
+<% content_for :auto_discoveries do -%>
+  <%= auto_discovery_link_tag :rss, { :format => :rss } %>
+<% end -%>

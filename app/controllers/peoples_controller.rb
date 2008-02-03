@@ -5,14 +5,19 @@ class PeoplesController < ApplicationController
   # GET /peoples
   # GET /peoples.xml
   def index
-    @secondary_title = 'Browsing all Peoples'
-    @pages, @peoples = paginate :people, :per_page => per_page,
-      :order => 'title ASC', :singular_name => 'people'
-    @tags = Page.tags(:limit => 25, :order => "name DESC",
-      :owner_type => 'People')
     respond_to do |format|
-      format.html # index.rhtml
-      format.xml { render :xml => @people.to_xml }
+      format.html do
+        @secondary_title = 'Browsing all Peoples'
+        @pages, @peoples = paginate :people, :per_page => per_page,
+          :order => 'title ASC', :singular_name => 'people'
+        @tags = Page.tags(:limit => 25, :order => "name DESC",
+          :owner_type => 'People')
+      end
+      format.rss do
+        @peoples = People.find :all, :order => 'peoples.created_at DESC',
+          :limit => per_page
+        render :partial => 'peoples'
+      end
     end
   end
   
