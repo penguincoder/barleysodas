@@ -5,6 +5,7 @@ class CreatePeoples < ActiveRecord::Migration
       t.column :role_id, :integer
       t.column :encrypted_password, :string, :limit => 512
       t.column :salt, :string, :limit => 512
+      t.column :created_at, :timestamp
     end
     add_index :peoples, :title
     add_index :peoples, :role_id

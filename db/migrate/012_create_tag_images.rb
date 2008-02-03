@@ -11,6 +11,7 @@ class CreateTagImages < ActiveRecord::Migration
     add_index :tag_images, :image_id
     add_index :tag_images, :tagged_id
     add_index :tag_images, :tagged_type
+    add_index :tag_images, :primary
   end
 
   def self.down

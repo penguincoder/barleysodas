@@ -6,7 +6,9 @@ class CreateBeers < ActiveRecord::Migration
       t.column :original_gravity, :float
       t.column :final_gravity, :float
       t.column :style_id, :integer
+      t.column :created_at, :timestamp
     end
+    add_index :beers, :title
     add_index :beers, :style_id
   end
 
