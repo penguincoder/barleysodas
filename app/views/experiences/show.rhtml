@@ -1,0 +1,45 @@
+<% content_for :stylesheet do -%>
+#content li {
+  height: 23px;
+  margin-top: 10px;
+  border-bottom: 2px solid #CBCBCB;
+}
+<% end -%>
+
+<h3><%= @people.title -%>'s Progress</h3>
+
+<% if @breweries.empty? -%>
+<p>Epic slacking.</p>
+<% else -%>
+<% for brewery in @breweries -%>
+<h4><%= show_brewery_link(brewery) -%></h4>
+<ul>
+  <% for experience in @experiences -%><li><span style="float: right"><%= experience_rating(experience) -%></span> <%= show_beer_link(experience.beer) -%></li><% end %>
+</ul>
+<% end -%>
+<% end -%>
+
+<% content_for :script do -%>
+  addLoadEvent(function(){
+    var r;
+<% for experience in @experiences do -%>
+    r = new Control.Rating('rating_div_<%= experience.id -%>',
+      {
+        min: 1,
+        max: 10,
+        rated: true,
+        value: <%= experience.rating %>
+      });
+<% end -%>
+  });
+<% end -%>
+
+<% content_for :sidebar do -%>
+  You have tried <strong><%= pluralize(@total_count , 'beer') -%></strong>.<br />
+<% end -%>
+
+<%= render :partial => 'shared/pagination_links' %>
+
+<% content_for :auto_discoveries do -%>
+  <%= auto_discovery_link_tag :rss, { :format => :rss } %>
+<% end -%>
