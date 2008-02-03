@@ -140,8 +140,9 @@ module ApplicationHelper
   ##
   # Link to open the dialog box for the tagged image browser.
   #
-  def tagged_image_browser_link
-    link_to_function 'Tagged Images',
-      "lightboxes['tagged_image_browser'].open()"
+  def tagged_image_browser_link(obj = nil)
+    link_to_function('Tagged Images',
+      "lightboxes['tagged_image_browser'].open()") +
+      (obj ? " (#{obj.tagged_images.size})" : '')
   end
 end
