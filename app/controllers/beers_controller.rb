@@ -9,9 +9,7 @@ class BeersController < ApplicationController
     @secondary_title = 'Browsing all beers'
     @pages, @beers = paginate :beers, :include => 'page', :per_page => per_page,
       :order => 'beers.title ASC'
-    if @beers.empty?
-      flash.now[:notice] = 'There are no beers yet.'
-    end
+    flash.now[:notice] = 'There are no beers yet.' if @beers.empty?
     @tags = Page.tags(:limit => 25, :order => "name DESC",
       :owner_type => 'Beer')
     respond_to do |format|
@@ -23,6 +21,8 @@ class BeersController < ApplicationController
   # GET /beers/1
   # GET /beers/1.xml
   def show
+    person = People.find(session[:people_id], :include => [ 'experiences' ])
+    @experience = person.experiences.detect { |e| e.beer_id == @beer.id }
     respond_to do |format|
       format.html # show.rhtml
       format.xml  { render :xml => @beer.to_xml }

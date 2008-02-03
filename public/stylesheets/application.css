@@ -7,6 +7,7 @@
 @import 'content.css';
 @import 'syntax.css';
 @import 'lightboxes.css';
+@import 'jsratings.css';
 
 @media print { #sidebar { display: none; }
                #content { float: none; width: 90%; }

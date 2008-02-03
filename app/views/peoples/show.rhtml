@@ -9,5 +9,6 @@
   <% unless @people.tagged_images.empty? -%><%= tagged_image_browser_link -%><br /><% end -%>
   <%= show_friends_link(@people) -%><br />
   <% unless @people.id == session[:people_id] or @people.friend_of?(session[:people_id]) -%><%= add_friend_link(@people) -%><% end -%>
-  <% if @people.friend_of?(session[:people_id]) -%><%= remove_friend_link(@people) -%><% end -%>
+  <% if @people.friend_of?(session[:people_id]) -%><%= remove_friend_link(@people) -%><br /><% end -%>
+  <%= link_to "#{pluralize(@people.beers.size, 'Beer')} Experience", experience_path(:id => @people.page.title_for_url) -%><br />
 <% end -%>

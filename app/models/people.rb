@@ -12,6 +12,8 @@ class People < ActiveRecord::Base
   validates_uniqueness_of :title
   has_many :friends, :foreign_key => :source_id, :dependent => :destroy
   has_many :actual_friends, :through => :friends, :source => :destination
+  has_many :experiences, :dependent => :destroy
+  has_many :beers, :through => :experiences
   
   make_authenticatable
   validates_length_of :password, :minimum => 8, :if => :password_required?,

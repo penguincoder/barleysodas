@@ -1,10 +1,40 @@
+<%= javascript_include_tag('control.rating.js') -%>
 <%= tagged_image_browser(@beer) %>
 
 <%= render :partial => 'pages/page' %>
+
+<% content_for :script do -%>
+after_opens['experienceDialog'] = function(){
+  var r = new Control.Rating('rating_div',
+  {
+    min: 1,
+    max: 10,
+    multiple: true,
+    input: 'experience_rating'
+  });
+  r.setValue(5);
+}
+<% end -%>
+
+<% lightbox :title => 'Add a beverage experience', :window_id => 'experienceDialog' do -%>
+  <p>How do you rate this experience? (1 for bad, 10 for great)</p>
+  <%= hidden_field_tag 'experience_rating' %>
+  <%= hidden_field_tag 'beer_id', @beer.id %>
+  <span id="rating_div" class="rating_container"></span>
+  <br /><br />
+  <div class="dialogControls">
+    <%= link_to_remote 'Save', :url => experiences_path(:format => :xml),
+    :with => "'experience[rating]='+escape($('experience_rating').value)+'&experience[beer_id]='+escape($('beer_id').value)",
+    :success => "Control.Modal.close();new Effect.Highlight('experience_container', {duration: 1.5})",
+    :update => 'experience_container' -%> <%= link_to_function 'Cancel', 'Control.Modal.close()' -%>
+  </div>
+<% end -%>
 
 <% content_for :sidebar do -%>
   <%= new_beer_link -%><br />
   <%= edit_beer_link(@beer) -%><br />
   <%= link_to 'Destroy', beer_path(@beer.page.title_for_url), :confirm => 'Are you sure?', :method => :delete %><br />
-  <% unless @beer.tagged_images.empty? -%><%= tagged_image_browser_link -%><br /><% end -%>
+  <% unless @beer.tagged_images.empty? -%><%= tagged_image_browser_link(@beer) -%><br /><% end %>
+  <span id="experience_container"><% if @experience -%><%= remove_experience_link(@experience) -%><% else -%><%= add_experience_link -%><% end %></span><br />
+  <strong><%= pluralize(@beer.people.size, 'people') -%></strong> have experienced this beer.<br />
 <% end -%>

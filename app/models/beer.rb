@@ -7,6 +7,8 @@ class Beer < ActiveRecord::Base
   belongs_to :style
   validates_presence_of :style_id
   has_many_tagged_images
+  has_many :experiences, :dependent => :destroy
+  has_many :people, :through => :experiences
   
   ##
   # Returns a list of attributes for the Page partial.
