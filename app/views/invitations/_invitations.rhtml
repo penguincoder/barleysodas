@@ -1,0 +1,2 @@
+You have <strong><%= pluralize(@people.invitations.size, 'Invitations') rescue '0 Invitations' -%></strong>.
+<% if @people and !@people.invitations.empty? -%><br /><%= link_to_function 'Send Invitation', "lightboxes['invitation_dialog'].open()" -%><% end -%>

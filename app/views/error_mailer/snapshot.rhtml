@@ -1,0 +1,38 @@
+Error report from <%= Time.now %>
+
+* Message: <%= @exception.message %>
+* Location: <%= @env['REQUEST_URI'] %>
+* Action: <%= @params.delete('action') %>
+* Controller: <%= @params.delete('controller') %>
+* Query: <%= @env['QUERY_STRING'] %>
+* Method: <%= @env['REQUEST_METHOD'] %>
+* SSL: <%= @env['SERVER_PORT'].to_i == 443 ? "true" : "false"  %>
+* Agent: <%= @env['HTTP_USER_AGENT']  %>
+
+Backtrace
+<%= @trace.to_a.join("\n") -%>
+
+<% if @params -%>
+Params
+<% for key, val in @params -%>
+* <%= key %>
+    <%= val.to_yaml.to_a.join("\n    ") %>
+<% end -%>
+<% end -%>
+
+<% if @session -%>
+Session
+<% for key, val in @session -%>
+<% next if key.to_s == 'permissions' -%>
+* <%= key %>
+    <%= val.to_yaml.to_a.join("\n    ") %>
+<% end -%>
+<% end -%>
+
+<% if @env -%>
+Environment
+<% for key, val in @env -%>
+* <%= key %>
+    <%= val.to_yaml.to_a.join("\n    ") %>
+<% end -%>
+<% end -%>

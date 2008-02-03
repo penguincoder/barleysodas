@@ -14,6 +14,8 @@ class People < ActiveRecord::Base
   has_many :actual_friends, :through => :friends, :source => :destination
   has_many :experiences, :dependent => :destroy
   has_many :beers, :through => :experiences
+  has_many :invitations, :dependent => :destroy,
+    :conditions => [ 'sent IS NULL or sent = ?', false ]
   
   make_authenticatable
   validates_length_of :password, :minimum => 8, :if => :password_required?,

@@ -50,8 +50,10 @@ class PeoplesController < ApplicationController
     set_people_role
     @page = Page.new(params[:page])
     @people.page = @page
+    invitation = Invitation.find_by_code(params[:code])
     respond_to do |format|
-      if @people.save
+      if invitation and @people.save
+        invitation.destroy
         flash[:notice] = 'People was successfully created.'
         format.html { redirect_to people_url(@people.page.title_for_url) }
         format.xml  { head :created,

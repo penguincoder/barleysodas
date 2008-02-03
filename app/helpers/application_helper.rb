@@ -116,9 +116,8 @@ module ApplicationHelper
   # Renders everything you need to display the TagImage browser.
   #
   def tagged_image_browser(obj)
-    javascript_include_tag('control.modal.js') +
-      render(:partial => 'shared/tagged_image_browser',
-        :locals => { :obj => obj })
+    render(:partial => 'shared/tagged_image_browser',
+      :locals => { :obj => obj })
   end
   
   ##

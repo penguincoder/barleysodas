@@ -2,6 +2,16 @@
 
 <%= render :partial => 'pages/page' %>
 
+<% lightbox :title => 'Send An Invitation', :window_id => 'invitation_dialog' do -%>
+  <div id="invitation_errors"></div>
+  <div class="centered">
+  <p>Enter the recipient's email address: <%= text_field_tag 'email' -%></p>
+  </div>
+  <div class="dialogControls">
+  <%= link_to_remote "Send", :url => { :controller => :invitations, :action => :send_invitation }, :with => "'email='+escape($('email').value)", :update => { :failure => 'invitation_errors', :success => 'person_invitations' }, :success => "Control.Modal.close()" -%>
+  </div>
+<% end -%>
+
 <% content_for :sidebar do -%>
   <%= new_people_link -%><br />
   <%= edit_people_link(@people) %><br />
@@ -11,4 +21,6 @@
   <% unless @people.id == session[:people_id] or @people.friend_of?(session[:people_id]) -%><%= add_friend_link(@people) -%><% end -%>
   <% if @people.friend_of?(session[:people_id]) -%><%= remove_friend_link(@people) -%><br /><% end -%>
   <%= link_to "#{pluralize(@people.beers.size, 'Beer')} Experience", experience_path(:id => @people.page.title_for_url) -%><br />
+  <span id="person_invitations"><%= render :partial => 'invitations/invitations' -%></span><br />
+  <% if has_permission_for_action?(:create, :invitations) -%><%= link_to_remote "#{image_tag('list-add.png')} Invitation", :update => 'person_invitations', :url => invitations_path, :with => "'people_id=#{@people.id}'", :success => "new Effect.Highlight('person_invitations', { duration: 2.0 })" -%><br /><% end -%>
 <% end -%>

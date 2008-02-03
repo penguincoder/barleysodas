@@ -127,6 +127,23 @@ class ApplicationController < ActionController::Base
     true
   end
   
+  ##
+  # Log the error and mail it out if the request is not a local request.
+  # Usually only used in production mode.
+  #
+  def log_error(exception)
+    super(exception)
+    begin
+      unless local_request? or RAILS_ENV == 'development' or
+        exception.class == ActiveRecord::RecordNotFound
+        ErrorMailer.deliver_snapshot(exception, clean_backtrace(exception),
+          session.instance_variable_get("@data"), params, request.env)
+      end
+    rescue => e
+      logger.info e.to_s
+    end
+  end
+  
   private
   
   ##

@@ -10,6 +10,8 @@ class CreateRoles < ActiveRecord::Migration
     br = Role.create :code => 'base', :name => 'Base Role'
     ar = Role.create :code => 'admin', :name => 'Administrative Role',
       :parent_id => br.id
+    nr = Role.create :code => 'normal', :name => 'Normal User Role',
+      :parent_id => br.id
   end
 
   def self.down

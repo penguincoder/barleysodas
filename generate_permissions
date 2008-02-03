@@ -6,7 +6,7 @@ base_actions = ApplicationController.action_methods
 controllers = [ PagesController, DiscussionsController, StylesController,
   PeoplesController, BeersController, BreweriesController, RolesController,
   GalleriesController, TagImagesController, FriendsController,
-  ExperiencesController ]
+  ExperiencesController, InvitationsController ]
 controllers.each do |c|  
   actions = c.action_methods - base_actions
   cname = c.controller_name

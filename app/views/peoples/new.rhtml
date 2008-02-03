@@ -1,6 +1,7 @@
 <%= error_messages_for :people %>
 
-<% form_for(:people, :url => peoples_path) do |f| %>
+<% form_for(:people, :url => peoples_path, :code => params[:code]) do |f| %>
+  <p>Invitation Code: <strong><%= params[:code] -%></strong><%= hidden_field_tag 'code', params[:code] -%></p>
   <%= render :partial => 'people_form' %>
   <p>
     <%= submit_tag "Create" %>
