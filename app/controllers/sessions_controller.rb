@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     @people = People.authenticate(params[:login], params[:password])
     if @people
       session[:people_title] = @people.title
+      session[:people_title_for_url] = @people.page.title_for_url
       session[:people_id] = @people.id
       respond_to do |format|
         format.html {
