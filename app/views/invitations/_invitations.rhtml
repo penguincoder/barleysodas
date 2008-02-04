@@ -1,2 +1,2 @@
-You have <strong><%= pluralize(@people.invitations.size, 'Invitations') rescue '0 Invitations' -%></strong>.
+<% if @people.id == session[:people_id] -%>You have<% else -%><%= @people.title -%> has<% end -%> <strong><%= pluralize(@people.invitations.size, 'Invitations') rescue '0 Invitations' -%></strong>.
 <% if @people and !@people.invitations.empty? -%><br /><%= link_to_function "#{image_tag('mail-forward.png')} Send Invitation", "lightboxes['invitation_dialog'].open()" -%><% end -%>
