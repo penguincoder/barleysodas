@@ -16,6 +16,7 @@ class FriendsController < ApplicationController
   # POST /friends.xml
   def create
     @friend = Friend.new(params[:friend])
+    @page = @friend.destination
     respond_to do |format|
       if @friend.save
         flash[:notice] = 'Successfully added the new friend'
