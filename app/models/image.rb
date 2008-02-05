@@ -66,6 +66,7 @@ class Image < ActiveRecord::Base
   # files if applicable.
   #
   def setup_directories
+    File.umask(0022)
     Dir.mkdir(base_directory) unless File.exist?(base_directory)
     self.original = File.basename(@file.original_filename).gsub(/[^\w._-]/, '')
     @magick_image.write("#{base_directory}/#{self.original}")
