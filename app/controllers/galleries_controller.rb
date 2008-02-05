@@ -67,6 +67,7 @@ class GalleriesController < ApplicationController
   def download_original
     send_file("#{RAILS_ROOT}/public/images/" +
       @image.filename_for_version(:original),
+      :filename => @image.filename_for_version(:original),
       :disposition => 'inline', :type => @image.content_type)
   end
   
