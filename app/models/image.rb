@@ -70,6 +70,7 @@ class Image < ActiveRecord::Base
     Dir.mkdir(base_directory) unless File.exist?(base_directory)
     self.original = File.basename(@file.original_filename).gsub(/[^\w._-]/, '')
     @magick_image.write("#{base_directory}/#{self.original}")
+    File.chmod(0644, "#{base_directory}/#{self.original}")
     @magick_image.thumbnail("600x600>")
     self.screen = "screen_#{self.original}"
     @magick_image.write("#{base_directory}/#{self.screen}")
@@ -77,9 +78,11 @@ class Image < ActiveRecord::Base
       self.screen_width = $1
       self.screen_height = $2
     end
+    File.chmod(0644, "#{base_directory}/#{self.screen}")
     @magick_image.thumbnail("50x50>")
     self.thumbnail = "thumbnail_#{self.original}"
     @magick_image.write("#{base_directory}/#{self.thumbnail}")
+    File.chmod(0644, "#{base_directory}/#{self.thumbnail}")
     self.save
   end
   
