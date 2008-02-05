@@ -14,7 +14,7 @@
 <% for brewery in @breweries -%>
 <h4><%= show_brewery_link(brewery) -%></h4>
 <ul>
-  <% for experience in @experiences.select { |e| e.brewery_id == brewery.id } -%><li><span style="float: right"><%= experience_rating(experience) -%></span> <%= show_beer_link(experience.beer) -%></li><% end %>
+  <% for experience in @experiences.select { |e| e.beer.brewery_id == brewery.id } -%><li><span style="float: right"><%= experience_rating(experience) -%></span> <%= show_beer_link(experience.beer) -%></li><% end %>
 </ul>
 <% end -%>
 <% end -%>
