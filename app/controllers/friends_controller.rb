@@ -16,6 +16,7 @@ class FriendsController < ApplicationController
   # POST /friends.xml
   def create
     @friend = Friend.new(params[:friend])
+    @people = @friend.source
     @page = @friend.destination
     respond_to do |format|
       if @friend.save
