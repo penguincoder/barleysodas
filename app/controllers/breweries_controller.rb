@@ -13,7 +13,7 @@ class BreweriesController < ApplicationController
           :order => 'breweries.title ASC', :per_page => per_page
         flash.now[:notice] = 'There are no breweries yet.' if @breweries.empty?
         @tags = Page.tags(:limit => 25, :order => "name DESC",
-          :owner_type => 'Beer')
+          :owner_type => 'Brewery')
       end
       format.rss do
         @breweries = Brewery.find :all, :order => 'breweries.created_at DESC',
