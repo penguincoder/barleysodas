@@ -21,7 +21,7 @@ class FriendsController < ApplicationController
     respond_to do |format|
       if @friend.save
         flash[:notice] = 'Successfully added the new friend'
-        format.html { redirect_to people_path(@people.page.title_for_url) }
+        format.html { redirect_to people_path(@page.title_for_url) }
       else
         format.html { render :action => "new" }
       end
