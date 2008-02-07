@@ -3,9 +3,9 @@
   <h2 class="entry-title">
     <%= @page.title %>
   </h2>
-  <% unless simple -%><div class="vcard">
-    Posted by <span class="fn"><%= @page.created_by.title rescue 'That other guy' -%></span>
-  </div><% end -%>
+  <div class="vcard">
+    <% if @page.owner_type.nil? -%>Posted by <span class="fn"><%= @page.created_by.title rescue 'That other guy' -%></span><% end -%> Created: <%= @page.created_at -%>
+  </div>
   <br class="clear" />
   <div class="entry-content">
     <%= replace_wiki_words(@page.html) %>
