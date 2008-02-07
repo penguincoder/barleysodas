@@ -21,6 +21,7 @@
   <% unless @people.id == session[:people_id] or @people.friend_of?(session[:people_id]) -%><%= add_friend_link(@people) -%><br /><% end -%>
   <% if @people.friend_of?(session[:people_id]) -%><%= remove_friend_link(@people) -%><br /><% end -%>
   <%= link_to "#{pluralize(@people.beers.size, 'Beer')} Experience", experience_path(:id => @people.page.title_for_url) -%><br />
+  <% if @people.beers.size == Beer.count -%><%= @people.title -%> is a god among men, having tried every beer.<br /><% end -%>
   <span id="person_invitations"><%= render :partial => 'invitations/invitations' -%></span><br />
   <% if has_permission_for_action?(:create, :invitations) -%><%= link_to_remote "#{image_tag('list-add.png')} Invitation", :update => 'person_invitations', :url => invitations_path, :with => "'people_id=#{@people.id}'", :success => "new Effect.Highlight('person_invitations', { duration: 2.0 })" -%><br /><% end -%>
 <% end -%>
