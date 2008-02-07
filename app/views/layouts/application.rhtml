@@ -43,7 +43,7 @@
     <%= link_to_unless_current 'BarleySodas People', peoples_path -%><br />
     <%= link_to_unless_current 'Gallery', galleries_path -%><br />
     <% if has_permission_for_action?(:index, :roles) -%><%= link_to_unless_current 'Roles', roles_path -%><br /><% end -%>
-    <% unless logged_in? -%><%= link_to_unless_current 'Login', new_session_path -%><% else -%><%= link_to "Logout #{session[:people_title]}", session_path(:id => session[:people_title]), :method => :delete -%><% end %>
+    <% unless logged_in? -%><%= link_to_unless_current 'Login', new_session_path -%><% else -%><%= link_to 'My Page', people_path(session[:people_title_for_url]) -%><br /><%= link_to "Logout #{session[:people_title]}", session_path(:id => session[:people_title]), :method => :delete -%><% end %>
     <hr />
     <%= yield :sidebar %>
   </div>
