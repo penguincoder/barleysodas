@@ -9,8 +9,10 @@ class BeersController < ApplicationController
       format.html do
         @content_title = 'The Beers'
         @secondary_title = 'Browsing all beers'
-        @pages, @beers = paginate :beers, :include => 'page', :per_page => per_page,
-          :order => 'beers.title ASC'
+        @pages, @beers = paginate :beers, :include => [ 'page', 'brewery' ],
+          :order => 'breweries.title ASC, beers.title ASC',
+          :per_page => per_page
+        @breweries = @beers.collect { |b| b.brewery }.uniq
         flash.now[:notice] = 'There are no beers yet.' if @beers.empty?
         @tags = Page.tags(:limit => 25, :order => "name DESC",
           :owner_type => 'Beer')

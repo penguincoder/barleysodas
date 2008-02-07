@@ -10,6 +10,10 @@ class Beer < ActiveRecord::Base
   has_many :experiences, :dependent => :destroy
   has_many :people, :through => :experiences
   
+  def name
+    "#{self.brewery.title} :: #{self.title}"
+  end
+  
   ##
   # Returns a list of attributes for the Page partial.
   #

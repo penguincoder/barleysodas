@@ -49,11 +49,16 @@ class TagImagesController < ApplicationController
     @results = {}
     cond_ary = [ 'title ILIKE :title' ]
     cond_var = { :title => "%#{params[:name]}%" }
+    limit = 50
     TagImage.types_for_select.flatten.each do |ctype|
+      next if ctype == 'Beer'
       klass = Class.class_eval(ctype)
       @results[ctype] = klass.find :all, :order => 'title ASC',
-        :conditions => [ cond_ary.join(' AND '), cond_var ]
+        :conditions => [ cond_ary.join(' AND '), cond_var ], :limit => limit
     end
+    @results['Beer'] = Beer.find :all, :include => [ 'brewery' ],
+      :order => 'breweries.title ASC, beers.title ASC', :limit => limit,
+      :conditions => [ 'beers.title ILIKE :title OR breweries.title ILIKE :title', cond_var ]
     render :partial => 'taggable_results'
   end
   

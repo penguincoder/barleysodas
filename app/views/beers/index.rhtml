@@ -1,6 +1,9 @@
+<% for brewery in @breweries -%>
+<h4><%= show_brewery_link(brewery) -%></h4>
 <ul>
-<% for beer in @beers %><li><%= link_to beer.title, beer_path(beer.page.title_for_url) %></li><% end %>
+  <% for beer in @beers.select { |b| b.brewery_id == brewery.id } -%><li><%= show_beer_link(beer) -%></li><% end %>
 </ul>
+<% end -%>
 
 <%= render :partial => 'shared/pagination_links' %>
 

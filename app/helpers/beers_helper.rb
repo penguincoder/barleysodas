@@ -1,4 +1,6 @@
 module BeersHelper
+  include BreweriesHelper
+  
   def new_beer_link
     link_to 'New Beer', new_beer_path, { :title => 'Create a new beer' }
   end
