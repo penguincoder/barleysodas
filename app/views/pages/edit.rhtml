@@ -2,7 +2,7 @@
 
 <%= error_messages_for :page %>
 
-<% form_for(:page, :url => page_path({ :id => @page.title_for_url }), :html => { :method => :put }) do |f| %>
+<% form_for(:page, :url => page_path(@page), :html => { :method => :put }) do |f| %>
 <%= render :partial => 'page_form' %>
 <p>
   <%= submit_tag "Update" %>

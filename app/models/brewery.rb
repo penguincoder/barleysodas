@@ -2,6 +2,7 @@
 # This model represents a company that produces Beer.
 #
 class Brewery < ActiveRecord::Base
+  include WordyParameter
   has_many :beers
   has_one_tuxwiki_page :owner_class => 'Brewery'
   has_many_tagged_images

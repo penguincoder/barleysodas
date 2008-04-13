@@ -1,6 +1,6 @@
 <%= error_messages_for :beer %>
 
-<% form_for(:beer, :url => beer_path(@beer.page.title_for_url), :html => { :method => :put }) do |f| %>
+<% form_for(:beer, :url => brewery_beer_path(@beer.brewery, @beer), :html => { :method => :put }) do |f| %>
 <%= render :partial => 'beer_form' %>
 <p>
   <%= submit_tag "Update" %>

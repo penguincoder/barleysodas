@@ -1,6 +1,6 @@
 <%= error_messages_for :beer %>
 
-<% form_for(:beer, :url => beers_path, :html => { :method => :post }) do |f| %>
+<% form_for(:beer, brewery_beers_path(:brewery_id => nil), :html => { :method => :post }) do |f| %>
 <%= render :partial => 'beer_form' %>
 <p>
   <%= submit_tag "Create" %>

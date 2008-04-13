@@ -45,7 +45,7 @@ class StylesController < ApplicationController
     respond_to do |format|
       if @style.save
         flash[:notice] = 'Style was successfully created.'
-        format.html { redirect_to style_url(@style.page.title_for_url) }
+        format.html { redirect_to style_url(@style) }
         format.xml  { head :created, :location => style_url(@style) }
       else
         format.html { render :action => "new" }
@@ -64,7 +64,7 @@ class StylesController < ApplicationController
     respond_to do |format|
       if @style.save
         flash[:notice] = 'Style was successfully updated.'
-        format.html { redirect_to style_url(@style.page.title_for_url) }
+        format.html { redirect_to style_url(@style) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

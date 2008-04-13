@@ -2,7 +2,7 @@ xml.instruct! :xml, :version=>"1.0"
 xml.rss(:version=>"2.0"){
   xml.channel{
     xml.title("#{@people.title}'s Newest Beers")
-    xml.link(experience_url(@people.page.title_for_url))
+    xml.link(experience_url(@people))
     xml.description("Most recently added beers.")
     xml.language('en-us')
     xml.lastBuildDate((@experiences.first.created_at.strftime("%a, %d %b %Y %H:%M:%S %z") rescue nil))
@@ -12,8 +12,8 @@ xml.rss(:version=>"2.0"){
           xml.description(experience.beer.brewery.title)
           xml.author(experience.beer.page.created_by.title)
           xml.pubDate(experience.created_at.strftime("%a, %d %b %Y %H:%M:%S %z"))
-          xml.link(beer_url(experience.beer.page.title_for_url))
-          xml.guid(beer_url(experience.beer.page.title_for_url))
+          xml.link(brewery_beer_url(experience.beer.brewery, experience.beer))
+          xml.guid(brewery_beer_url(experience.beer.brewery, experience.beer))
         end
       end
   }

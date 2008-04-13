@@ -35,15 +35,15 @@
   </div>
 <% unless @hide_sidebar -%>
   <div id="sidebar">
-    <%= link_to_unless_current 'Browse The Beer Wiki', pages_path -%><br />
-    <%= link_to_unless_current 'Browse Beers', beers_path -%><br />
-    <% if logged_in? -%><%= link_to_unless_current 'My Beer Experiences', experience_path(:id => session[:people_title_for_url]) -%><br /><% end %>
-    <%= link_to_unless_current 'Beverage Styles', styles_path -%><br />
-    <%= link_to_unless_current 'Browse Breweries', breweries_path -%><br />
-    <%= link_to_unless_current 'BarleySodas People', peoples_path -%><br />
+    <%= link_to_unless_current 'Beer Wiki', pages_path -%><br />
+    <%= link_to_unless_current 'Beers', :controller => :beers, :action => :index, :brewery_id => nil -%><br />
+    <% if logged_in? -%><%= link_to_unless_current 'My Beers', experience_path(:id => session[:people_title_for_url]) -%><br /><% end %>
+    <%= link_to_unless_current 'Styles', styles_path -%><br />
+    <%= link_to_unless_current 'Breweries', breweries_path -%><br />
+    <%= link_to_unless_current 'Peoples', peoples_path -%><br />
     <%= link_to_unless_current 'Gallery', galleries_path -%><br />
     <% if has_permission_for_action?(:index, :roles) -%><%= link_to_unless_current 'Roles', roles_path -%><br /><% end -%>
-    <% unless logged_in? -%><%= link_to_unless_current 'Login', new_session_path -%><% else -%><%= link_to 'My Page', people_path(session[:people_title_for_url]) -%><br /><%= link_to "Logout #{session[:people_title]}", session_path(:id => session[:people_title]), :method => :delete -%><% end %>
+    <% unless logged_in? -%><%= link_to_unless_current 'Login', new_session_path -%><% else -%><%= link_to 'My Page', people_path(session[:people_title_for_url]) -%><br /><%= link_to 'Logout', session_path(:id => session[:people_title]), :method => :delete -%><% end %>
     <hr />
     <%= yield :sidebar %>
   </div>

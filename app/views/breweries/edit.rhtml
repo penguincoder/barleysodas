@@ -1,6 +1,6 @@
 <%= error_messages_for :brewery %>
 
-<% form_for(:brewery, :url => brewery_path(@brewery.page.title_for_url), :html => { :method => :put }) do |f| %>
+<% form_for(:brewery, :url => brewery_path(@brewery), :html => { :method => :put }) do |f| %>
 <%= render :partial => 'brewery_form' %>
 <p>
   <%= submit_tag "Update" %>
@@ -9,5 +9,5 @@
 
 <% content_for :sidebar do -%>
   <%= link_to 'New Brewery', new_brewery_path -%><br />
-  <%= link_to 'Show', brewery_path(@brewery.page.title_for_url) -%><br />
+  <%= link_to 'Show', brewery_path(@brewery) -%><br />
 <% end -%>

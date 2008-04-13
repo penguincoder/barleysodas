@@ -11,6 +11,7 @@
 # * Uses [[ and ]] for WikiWord representation.
 #
 class Page < ActiveRecord::Base
+  include WordyParameter
   acts_as_versioned
   acts_as_taggable
   
@@ -31,13 +32,6 @@ class Page < ActiveRecord::Base
   before_save :set_updated_person
   
   attr_protected :allow_discussions, :created_by, :updated_by
-  
-  ##
-  # Returns an url-friendly title for making links.
-  #
-  def title_for_url
-    self.title.gsub(/ /, '_')
-  end
   
   ##
   # Gets a title from an url name.

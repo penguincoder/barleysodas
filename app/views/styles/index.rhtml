@@ -1,7 +1,7 @@
 <% if @styles.empty? -%>
 <ul><li>No styles found.</li></ul>
 <% else -%>
-<ol><%= @styles.collect { |s| '<li>' + link_to(s.title, style_path(:id => s.page.title_for_url)) + '</li>' } %></ol>
+<ol><%= @styles.collect { |s| '<li>' + link_to(s.title, style_path(s)) + '</li>' } %></ol>
 <% end -%>
 
 <% content_for :sidebar do -%>

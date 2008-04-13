@@ -53,9 +53,9 @@ class PagesController < ApplicationController
     respond_to do |format|
       if @page.save
         flash[:notice] = 'Page was successfully created.'
-        format.html { redirect_to page_url({ :id => @page.title_for_url }) }
+        format.html { redirect_to page_url(@page) }
         format.xml  { head :created,
-          :location => page_url({ :id => @page.title_for_url }) }
+          :location => page_url(@page) }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @page.errors.to_xml }
@@ -74,7 +74,7 @@ class PagesController < ApplicationController
           if @page.title == 'HomePage'
             redirect_to pages_url
           else
-            redirect_to page_url({ :id => @page.title_for_url })
+            redirect_to page_url(@page)
           end
         }
         format.xml  { head :ok }

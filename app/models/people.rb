@@ -28,7 +28,8 @@ class People < ActiveRecord::Base
   # Friend of this instance.
   #
   def friend_of?(people_id)
-    Friend.count([ 'source_id = ? AND destination_id = ?', people_id, id ]) > 0
+    Friend.count(:conditions => [ 'source_id = ? AND destination_id = ?',
+      people_id, id ]) > 0
   end
   
   ##

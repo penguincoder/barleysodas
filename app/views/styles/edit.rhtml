@@ -1,6 +1,6 @@
 <%= error_messages_for :style %>
 
-<% form_for(:style, :url => style_path(@style.page.title_for_url), :html => { :method => :put }) do |f| %>
+<% form_for(:style, :url => style_path(@style), :html => { :method => :put }) do |f| %>
 <%= render :partial => 'style_form' %>
 <p>
   <%= submit_tag "Update" %>

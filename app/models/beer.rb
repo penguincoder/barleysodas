@@ -2,6 +2,7 @@
 # This model will represent a beverage produced by a Brewery.
 #
 class Beer < ActiveRecord::Base
+  include WordyParameter
   belongs_to :brewery
   has_one_tuxwiki_page :owner_class => 'Beer'
   belongs_to :style

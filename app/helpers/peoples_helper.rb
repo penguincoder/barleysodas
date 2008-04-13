@@ -4,18 +4,17 @@ module PeoplesHelper
   end
   
   def show_people_link(people)
-    link_to people.title, people_path(people.page.title_for_url),
-      { :title => people.title }
+    link_to people.title, people_path(people), { :title => people.title }
   end
   
   def edit_people_link(people)
-    link_to 'Edit People', edit_people_path(people.page.title_for_url),
+    link_to 'Edit People', edit_people_path(people),
       { :title => "Edit #{people.title}" }
   end
   
   def show_friends_link(people)
     link_to "#{people.title}'s Friends (#{people.actual_friends.size})",
-      friend_path(people.page.title_for_url)
+      friend_path(people)
   end
   
   def add_friend_link(people)
@@ -26,7 +25,6 @@ module PeoplesHelper
   
   def remove_friend_link(people)
     link_to "#{image_tag('list-remove.png')} Friend",
-      friend_url(:id => people.page.title_for_url, :d => session[:people_id]),
-      :method => :delete
+      friend_url(people, :d => session[:people_id]), :method => :delete
   end
 end

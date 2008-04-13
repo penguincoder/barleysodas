@@ -1,6 +1,6 @@
 <%= error_messages_for :people %>
 
-<% form_for(:people, :url => people_path(@people.page.title_for_url), :html => { :method => :put }) do |f| %>
+<% form_for(:people, :url => people_path(@people), :html => { :method => :put }) do |f| %>
   <%= render :partial => 'people_form' %>
   <p>
     <%= submit_tag "Update" %>

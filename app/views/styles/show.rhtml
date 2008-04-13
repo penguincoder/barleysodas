@@ -8,5 +8,5 @@
 <% content_for :sidebar do -%>
   <%= new_style_link -%><br />
   <%= edit_style_link(@style) -%><br />
-  <%= link_to 'Destroy', style_path(@style.page.title_for_url), :confirm => 'Are you sure?', :method => :delete -%><br />
+  <%= link_to 'Destroy', style_path(@style), :confirm => 'Are you sure?', :method => :delete -%><br />
 <% end -%>

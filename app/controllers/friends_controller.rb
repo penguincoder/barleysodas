@@ -21,7 +21,7 @@ class FriendsController < ApplicationController
     respond_to do |format|
       if @friend.save
         flash[:notice] = 'Successfully added the new friend'
-        format.html { redirect_to people_path(@dest.page.title_for_url) }
+        format.html { redirect_to people_path(@dest) }
       else
         format.html { render :action => "new" }
       end
@@ -37,7 +37,7 @@ class FriendsController < ApplicationController
     @friend.destroy if @friend
     respond_to do |format|
       flash[:notice] = 'Removed the friend'
-      format.html { redirect_to people_path(@people.page.title_for_url) }
+      format.html { redirect_to people_path(@people) }
     end
   end
   

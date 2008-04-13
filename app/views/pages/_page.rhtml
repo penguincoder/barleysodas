@@ -22,6 +22,6 @@
 
 <% content_for 'sidebar' do -%>
   <% if @page.allow_discussions? or !@page.discussions.empty? -%>
-  <%= link_to "Discuss", discussion_path(@page) -%> (<%= @page.discussions.size -%>)<br />
+  <%= link_to "Discuss", discussion_path(@page.id) -%> (<%= @page.discussions.size -%>)<br />
   <% end -%>
 <% end -%>

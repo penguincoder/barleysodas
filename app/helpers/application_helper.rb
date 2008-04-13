@@ -11,7 +11,7 @@ module ApplicationHelper
   #
   def content_title
     return h(@content_title) if @content_title
-    controller.class.to_s.gsub(/Controller/, '')
+    controller.controller_name.camelcase
   end
   
   ##
@@ -27,7 +27,7 @@ module ApplicationHelper
   # Returns a link for a Page model.
   #
   def link_to_page(page)
-    link_to h(page.title), page_path({ :id => page.title_for_url })
+    link_to h(page.title), page_path(page)
   end
   
   ##
@@ -36,7 +36,7 @@ module ApplicationHelper
   def allow_page_discussions
     @page.allow_discussions = true
   end
-  
+
   ##
   # Helper to check if Discussion is allowed. This should check the underlying
   # permissions first instead of looking in the model.

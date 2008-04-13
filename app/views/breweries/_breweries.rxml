@@ -12,8 +12,8 @@ xml.rss(:version=>"2.0"){
           xml.description(brewery.homepage)
           xml.author(brewery.page.created_by.title)
           xml.pubDate(brewery.created_at.strftime("%a, %d %b %Y %H:%M:%S %z"))
-          xml.link(brewery_url(brewery.page.title_for_url))
-          xml.guid(brewery_url(brewery.page.title_for_url))
+          xml.link(brewery_url(brewery))
+          xml.guid(brewery_url(brewery))
         end
       end
   }

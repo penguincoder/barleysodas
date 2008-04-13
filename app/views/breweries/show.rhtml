@@ -5,6 +5,6 @@
 <% content_for :sidebar do -%>
   <%= new_brewery_link -%><br />
   <%= edit_brewery_link(@brewery) -%><br />
-  <%= link_to 'Destroy', brewery_path(@brewery.page.title_for_url), :confirm => 'Are you sure?', :method => :delete %><br />
+  <%= link_to 'Destroy', brewery_path(@brewery), :confirm => 'Are you sure?', :method => :delete %><br />
   <% unless @brewery.tagged_images.empty? -%><%= tagged_image_browser_link -%><br /><% end -%>
 <% end -%>

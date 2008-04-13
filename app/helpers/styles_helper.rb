@@ -4,12 +4,11 @@ module StylesHelper
   end
   
   def show_style_link(style)
-    link_to style.title, style_path(style.page.title_for_url),
-      { :title => style.title }
+    link_to style.title, style_path(style), { :title => style.title }
   end
   
   def edit_style_link(style)
-    link_to 'Edit Style', edit_style_path(style.page.title_for_url),
+    link_to 'Edit Style', edit_style_path(style),
       { :title => "Edit #{style.title}" }
   end
 end

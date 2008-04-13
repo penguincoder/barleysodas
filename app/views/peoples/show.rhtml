@@ -15,12 +15,12 @@
 <% content_for :sidebar do -%>
   <%= new_people_link -%><br />
   <%= edit_people_link(@people) %><br />
-  <%= link_to 'Destroy', people_path(@people.page.title_for_url), :confirm => 'Are you sure?', :method => :delete %><br />
+  <%= link_to 'Destroy', people_path(@people), :confirm => 'Are you sure?', :method => :delete %><br />
   <% unless @people.tagged_images.empty? -%><%= tagged_image_browser_link -%><br /><% end -%>
   <%= show_friends_link(@people) -%><br />
   <% unless @people.id == session[:people_id] or @people.friend_of?(session[:people_id]) -%><%= add_friend_link(@people) -%><br /><% end -%>
   <% if @people.friend_of?(session[:people_id]) -%><%= remove_friend_link(@people) -%><br /><% end -%>
-  <%= link_to "#{pluralize(@people.beers.size, 'Beer')} Experience", experience_path(:id => @people.page.title_for_url) -%><br />
+  <%= link_to "#{pluralize(@people.beers.size, 'Beer')} Experience", experience_path(@people) -%><br />
   <% if @people.beers.size == Beer.count -%><em><%= @people.title -%> is a god among men, having tried every beer.</em><br /><% end -%>
   <span id="person_invitations"><%= render :partial => 'invitations/invitations' -%></span><br />
   <% if has_permission_for_action?(:create, :invitations) -%><%= link_to_remote "#{image_tag('list-add.png')} Invitation", :update => 'person_invitations', :url => invitations_path, :with => "'people_id=#{@people.id}'", :success => "new Effect.Highlight('person_invitations', { duration: 2.0 })" -%><br /><% end -%>

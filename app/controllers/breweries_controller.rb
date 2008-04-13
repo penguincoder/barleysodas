@@ -53,9 +53,9 @@ class BreweriesController < ApplicationController
     respond_to do |format|
       if @brewery.save
         flash[:notice] = 'Brewery was successfully created.'
-        format.html { redirect_to brewery_url(@brewery.page.title_for_url) }
+        format.html { redirect_to brewery_url(@brewery) }
         format.xml  { head :created,
-          :location => brewery_url(@brewery.page.title_for_url) }
+          :location => brewery_url(@brewery) }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @brewery.errors.to_xml }
@@ -71,7 +71,7 @@ class BreweriesController < ApplicationController
     respond_to do |format|
       if @brewery.save
         flash[:notice] = 'Brewery was successfully updated.'
-        format.html { redirect_to brewery_url(@brewery.page.title_for_url) }
+        format.html { redirect_to brewery_url(@brewery) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

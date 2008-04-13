@@ -2,16 +2,16 @@ module BeersHelper
   include BreweriesHelper
   
   def new_beer_link
-    link_to 'New Beer', new_beer_path, { :title => 'Create a new beer' }
+    link_to 'New Beer', new_brewery_beer_url, { :title => 'Create a new beer' }
   end
   
   def show_beer_link(beer)
-    link_to beer.title, beer_path(beer.page.title_for_url),
+    link_to beer.title, brewery_beer_path(beer.brewery, beer),
       { :title => beer.title }
   end
   
   def edit_beer_link(beer)
-    link_to 'Edit Beer', edit_beer_path(beer.page.title_for_url),
+    link_to 'Edit Beer', edit_brewery_beer_path(beer.brewery, beer),
       { :title => "Edit #{beer.title}" }
   end
   

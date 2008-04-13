@@ -55,9 +55,9 @@ class PeoplesController < ApplicationController
       if invitation and @people.save
         invitation.destroy
         flash[:notice] = 'People was successfully created.'
-        format.html { redirect_to people_url(@people.page.title_for_url) }
+        format.html { redirect_to people_url(@people) }
         format.xml  { head :created,
-          :location => people_url(@people.page.title_for_url) }
+          :location => people_url(@people) }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @people.errors.to_xml }
@@ -74,7 +74,7 @@ class PeoplesController < ApplicationController
     respond_to do |format|
       if @people.update_attributes(params[:people])
         flash[:notice] = 'People was successfully updated.'
-        format.html { redirect_to people_url(@people.page.title_for_url) }
+        format.html { redirect_to people_url(@people) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -5,12 +5,12 @@ module BreweriesHelper
   end
   
   def show_brewery_link(brewery)
-    link_to brewery.title, brewery_path(brewery.page.title_for_url),
+    link_to brewery.title, brewery_path(brewery),
       { :title => brewery.title }
   end
   
   def edit_brewery_link(brewery)
-    link_to 'Edit Brewery', edit_brewery_path(brewery.page.title_for_url),
+    link_to 'Edit Brewery', edit_brewery_path(brewery),
       { :title => "Edit #{brewery.title}" }
   end
 end

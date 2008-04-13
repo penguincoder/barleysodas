@@ -33,7 +33,7 @@ after_opens['experienceDialog'] = function(){
 <% content_for :sidebar do -%>
   <%= new_beer_link -%><br />
   <%= edit_beer_link(@beer) -%><br />
-  <%= link_to 'Destroy', beer_path(@beer.page.title_for_url), :confirm => 'Are you sure?', :method => :delete %><br />
+  <%= link_to 'Destroy', brewery_beer_path(@beer.brewery, @beer), :confirm => 'Are you sure?', :method => :delete %><br />
   <% unless @beer.tagged_images.empty? -%><%= tagged_image_browser_link(@beer) -%><br /><% end %>
   <span id="experience_container"><% if @experience -%><%= remove_experience_link(@experience) -%><% else -%><%= add_experience_link -%><% end %></span><br />
   <strong><%= pluralize(@beer.people.size, 'people') -%></strong> have experienced this beer.<br />

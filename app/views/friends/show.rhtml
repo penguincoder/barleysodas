@@ -1,5 +1,5 @@
 <% for friend in @friends do -%>
-  <div class="friend_box"><%= link_to friend.title, people_path(friend.page.title_for_url) -%></div>
+  <div class="friend_box"><%= link_to friend.title, people_path(friend) -%></div>
 <% end -%>
 
 <% content_for :sidebar do -%>

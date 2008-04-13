@@ -59,9 +59,9 @@ class BeersController < ApplicationController
     respond_to do |format|
       if @beer.save
         flash[:notice] = 'Beer was successfully created.'
-        format.html { redirect_to beer_url(@beer.page.title_for_url) }
+        format.html { redirect_to brewery_beer_path(brewery, @beer) }
         format.xml  { head :created,
-          :location => beer_url(@beer.page.title_for_url) }
+          :location => brewery_beer_path(brewery, @beer) }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @beer.errors.to_xml }
@@ -80,7 +80,7 @@ class BeersController < ApplicationController
     respond_to do |format|
       if @beer.save
         flash[:notice] = 'Beer was successfully updated.'
-        format.html { redirect_to beer_url(@beer.page.title_for_url) }
+        format.html { redirect_to brewery_beer_url(@beer.brewery, @beer) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -94,7 +94,7 @@ class BeersController < ApplicationController
   def destroy
     @beer.destroy
     respond_to do |format|
-      format.html { redirect_to beers_url }
+      format.html { redirect_to :action => :index }
       format.xml  { head :ok }
     end
   end
