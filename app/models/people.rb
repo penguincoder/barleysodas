@@ -2,6 +2,7 @@
 # This model represents a user in the system.
 #
 class People < ActiveRecord::Base
+  include WordyParameter
   has_one_tuxwiki_page :owner_class => 'People'
   belongs_to :role
   attr_protected :role_id
