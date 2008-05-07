@@ -1,4 +1,8 @@
 class SessionsController < ApplicationController
+  def index
+    redirect_to '/', :status => :moved_permenantly
+  end
+  
   def new
     @content_title = 'Log In'
     @secondary_title = ''
