@@ -78,7 +78,7 @@ class TagImagesController < ApplicationController
       conditions = [ cond_ary.join(' AND '), cond_var ]
       @current_page = params[:page].to_i
       @current_page = 1 if @current_page == 0
-      image_count = TagImage.count(conditions)
+      image_count = TagImage.count(:conditions => conditions)
       @page_count = (image_count.to_f / images_per_page.to_f).round
       @page_count = 1 if @page_count == 0
       @tagged_images = TagImage.find :all, :limit => images_per_page,
