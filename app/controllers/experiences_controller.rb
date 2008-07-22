@@ -18,8 +18,9 @@ class ExperiencesController < ApplicationController
         conditions = [ cond_ary.join(' AND '), cond_var ]
         @total_count = Experience.count("people_id = #{@people.id}")
         @pages, @experiences = paginate :experiences,
-          :include => [ 'beer' ], :order => [ 'beers.title ASC' ],
-          :per_page => per_page, :conditions => conditions
+          :order => [ 'beers.title ASC' ],
+          :per_page => per_page, :conditions => conditions,
+          :joins => "LEFT OUTER JOIN beers ON beers.id = experiences.beer_id"
         brewery_ids = @experiences.collect { |e| e.beer.brewery_id }
         @breweries = Brewery.find(brewery_ids, :order => 'title ASC')
         flash.now[:notice] = 'No experience yet.' if @experiences.empty?
