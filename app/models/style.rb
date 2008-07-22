@@ -2,6 +2,7 @@
 # Represents a category that a Beer belongs to.
 #
 class Style < ActiveRecord::Base
+  include WordyParameter
   has_one_tuxwiki_page :owner_class => 'Style'
   belongs_to :parent, :foreign_key => 'parent_id',
     :class_name => 'Style'
